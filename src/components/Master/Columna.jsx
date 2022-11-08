@@ -1,10 +1,11 @@
 import React, { Fragment } from 'react'
-export  function Columna() {
+import { Link } from 'react-router-dom'
+export function Columna() {
     return (
         <Fragment>
 
 
-            <ul className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+            <ul className="navbar-nav bg-gradient-green sidebar sidebar-dark accordion" id="accordionSidebar">
 
                 <a className="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
                     <div className="sidebar-brand-icon rotate-n-15">
@@ -16,46 +17,51 @@ export  function Columna() {
                 <hr className="sidebar-divider my-0" />
 
                 <li className="nav-item">
-                    <a className="nav-link" href="index.html">
-                        <i className="fas fa-fw fa-tachometer-alt"></i>
-                        <span>Home</span></a>
+
+                    <Link to="/" className="nav-link">                        <i className="fas fa-fw fa-tachometer-alt"></i>
+                        <span>Inicio</span>
+                    </Link>
+
                 </li>
 
                 <hr className="sidebar-divider" />
 
                 <div className="sidebar-heading">
-                    Interface
+                    Clases
                 </div>
 
-                <li className="nav-item">
+                <li className="nav-item active">
                     <a className="nav-link collapsed" href="." data-toggle="collapse" data-target="#collapseTwo"
                         aria-expanded="true" aria-controls="collapseTwo">
                         <i className="fas fa-fw fa-cog"></i>
-                        <span>Components</span>
+                        <span>Clase</span>
                     </a>
-                    <div id="collapseTwo" className="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div id="collapseTwo" className="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                         <div className="bg-white py-2 collapse-inner rounded">
-                            <h6 className="collapse-header">Custom Components:</h6>
-                            <a className="collapse-item" href="buttons.html">Buttons</a>
-                            <a className="collapse-item" href="cards.html">Cards</a>
+                            <h6 className="collapse-header">Personalizar clases:</h6>
+                            <a className="collapse-item" href="buttons.html">Mis Clases</a>
+                            <a className="collapse-item" href="cards.html">Añadir Clase</a>
                         </div>
                     </div>
                 </li>
+                <hr className="sidebar-divider" />
 
+                <div className="sidebar-heading">
+                    Partidas
+                </div>
                 <li className="nav-item">
                     <a className="nav-link collapsed" href="." data-toggle="collapse" data-target="#collapseUtilities"
                         aria-expanded="true" aria-controls="collapseUtilities">
                         <i className="fas fa-fw fa-wrench"></i>
-                        <span>Utilities</span>
+
+                        <span>Partidas</span>
                     </a>
                     <div id="collapseUtilities" className="collapse" aria-labelledby="headingUtilities"
                         data-parent="#accordionSidebar">
                         <div className="bg-white py-2 collapse-inner rounded">
-                            <h6 className="collapse-header">Custom Utilities:</h6>
-                            <a className="collapse-item" href="utilities-color.html">Colors</a>
-                            <a className="collapse-item" href="utilities-border.html">Borders</a>
-                            <a className="collapse-item" href="utilities-animation.html">Animations</a>
-                            <a className="collapse-item" href="utilities-other.html">Other</a>
+                            <h6 className="collapse-header">Personalizar partidas:</h6>
+                            <a className="collapse-item" href="utilities-color.html">Nueva Partida</a>
+                            <a className="collapse-item" href="utilities-border.html">Mis Partidas</a>
                         </div>
                     </div>
                 </li>
@@ -63,40 +69,57 @@ export  function Columna() {
                 <hr className="sidebar-divider" />
 
                 <div className="sidebar-heading">
-                    Addons
+                    Ejercicios
                 </div>
 
-                <li className="nav-item active">
+                <li className="nav-item ">
                     <a className="nav-link" href="." data-toggle="collapse" data-target="#collapsePages" aria-expanded="true"
                         aria-controls="collapsePages">
                         <i className="fas fa-fw fa-folder"></i>
-                        <span>Pages</span>
+                        <span>Exercises</span>
                     </a>
-                    <div id="collapsePages" className="collapse show" aria-labelledby="headingPages"
+                    <div id="collapsePages" className="collapse " aria-labelledby="headingPages"
                         data-parent="#accordionSidebar">
                         <div className="bg-white py-2 collapse-inner rounded">
-                            <h6 className="collapse-header">Login Screens:</h6>
-                            <a className="collapse-item" href="login.html">Login</a>
-                            <a className="collapse-item" href="register.html">Register</a>
-                            <a className="collapse-item" href="forgot-password.html">Forgot Password</a>
-                            <div className="collapse-divider"></div>
-                            <h6 className="collapse-header">Other Pages:</h6>
-                            <a className="collapse-item" href="404.html">404 Page</a>
-                            <a className="collapse-item active" href="blank.html">Blank Page</a>
+                            <h6 className="collapse-header">Ejercicios disponibles:</h6>
+                            <a className="collapse-item" href="login.html">Nivel 1 WHERE</a>
+                            <a className="collapse-item" href="register.html">Nivel 2 INNER JOIN</a>
+
                         </div>
                     </div>
                 </li>
+                <hr className="sidebar-divider" />
 
-                <li className="nav-item">
-                    <a className="nav-link" href="charts.html">
-                        <i className="fas fa-fw fa-chart-area"></i>
-                        <span>Charts</span></a>
+                <div className="sidebar-heading">
+                    Como se ha hecho
+                </div>
+                <li className="nav-item ">
+                    <Link to="about" className="nav-link"><i className="fas fa-fw fa-folder"></i>
+                        <span>Sobre Nosotros</span></Link>
+
                 </li>
 
-                <li className="nav-item">
-                    <a className="nav-link" href="tables.html">
-                        <i className="fas fa-fw fa-table"></i>
-                        <span>Tables</span></a>
+
+                <li className="nav-item ">
+                    <a className="nav-link" href="." data-toggle="collapse" data-target="#collapseComoSeHaHecho" aria-expanded="true"
+                        aria-controls="collapsePages">
+                        <i className="fas fa-fw fa-folder"></i>
+                        <span>Como se ha hecho</span>
+                    </a>
+                    <div id="collapseComoSeHaHecho" className="collapse " aria-labelledby="headingPages"
+                        data-parent="#accordionSidebar">
+                        <div className="bg-white py-2 collapse-inner rounded">
+                            <h6 className="collapse-header">Como se ha hecho:</h6>
+                            <Link to="about" className="collapse-item">
+                                La BD con MySQL</Link>
+                            <Link to="about" className="collapse-item">
+                                Una API REST con NodeJS</Link>
+                            <Link to="about" className="collapse-item">Una web con ReactJS</Link>
+                            <Link to="about" className="collapse-item">Despliegue con Docker</Link>
+                            <Link to="about" className="collapse-item">CI/CD con GitHub Actions</Link>
+
+                        </div>
+                    </div>
                 </li>
 
                 <hr className="sidebar-divider d-none d-md-block" />
@@ -104,7 +127,6 @@ export  function Columna() {
                 <div className="text-center d-none d-md-inline">
                     <button className="rounded-circle border-0" id="sidebarToggle"></button>
                 </div>
-
             </ul>
         </Fragment>
     )

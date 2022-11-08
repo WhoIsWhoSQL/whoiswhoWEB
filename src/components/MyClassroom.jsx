@@ -1,6 +1,5 @@
 import React, { Fragment, useState, useEffect } from 'react'
 import { ClassroomService } from '../services/classroomService';
-import { Classroom } from './Classroom';
 export function MyClassrooms({ user }) {
     const [classrooms, setClassrooms] = useState([]);
     useEffect(() => {
@@ -15,18 +14,24 @@ export function MyClassrooms({ user }) {
     return (
         <Fragment>
             <h1>My Classrooms</h1>
-            <a href="." class="btn btn-primary btn-icon-split">
-                <span class="icon text-white-50">
-                    <i class="fas fa-flag"></i>
-                </span>
-                <span class="text">Create New Class</span>
-            </a>
+            {/* <Classroom key={classroom.classId} classroom={classroom} /> */}
             <div class="row">
-               
-                    {classrooms.map((classroom) => (
-                        <Classroom key={classroom.classId} classroom={classroom} />
-                    ))}
-               
+                {classrooms.map((classroom) => (
+                    <div class="col-lg-6" key={classroom.classId}>
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">{classroom.name}</h6>
+                            </div>
+                            <div class="card-body">
+                                <p>            hola clase, esta es la clase {classroom.name} con id = {classroom.classId}
+                                </p>
+                                <p>El pin para unirse a la clase es <b>{classroom.pin}</b></p>
+                            </div>
+                        </div>
+                    </div>
+
+                ))}
+
             </div>
 
 

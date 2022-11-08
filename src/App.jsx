@@ -1,17 +1,20 @@
 import React, { Fragment } from 'react';
-// import axios from 'axios';
-// import { Container, Row, Col } from 'reactstrap';
-/* 
-import Post from './components/Post';
-import {Header} from './components/Header';
-import {LeftCard} from './components/LeftCard'; */
 import { Login } from './components/Login';
 import { Master } from './components/Master/Master';
-//import {Home} from './components/Home'
-import { useState } from 'react';
-//import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
+
+
 const App = () => {
   const [user, setUser] = useState(null);
+
+
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('App.WiWSQL.user'));
+    if (user) {
+      setUser(user);
+    }
+  }, []);
 
   const changeUser = (user) => {
     setUser(user);
