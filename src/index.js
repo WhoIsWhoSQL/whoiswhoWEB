@@ -7,8 +7,12 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 
-
 import { createRoot } from 'react-dom/client';
+
+
+const base_url_api = process.env.REACT_APP_BASE_URL_API
+console.log("base_url_api:" + base_url_api);
+console.log("process.env.NODE_ENV:" + process.env.NODE_ENV);
 const container = document.getElementById('root');
 const root = createRoot(container); // createRoot(container!) if you use TypeScript
 root.render(<App tab="home" />);

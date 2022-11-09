@@ -5,8 +5,8 @@ import axios from "axios";
 
 export class ClassroomService {
     
-
-    baseURL =  'http://localhost:4000/api/v1/classrooms'
+    baseURL_API = process.env.REACT_APP_BASE_URL_API || 'http://localhost:4000/api/v1/'
+    baseURL = this.baseURL_API + "classrooms"
     constructor(token = null) {
         console.log("token: " + token);
         this.config = {
