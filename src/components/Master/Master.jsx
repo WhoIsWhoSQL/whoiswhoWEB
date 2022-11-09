@@ -3,30 +3,33 @@ import { Columna } from './Columna'
 import { Cabecera } from './Cabecera'
 import { Pie } from './Pie'
 import { Home } from '../Home/Home'
-import { Routes, Route, BrowserRouter as Router } from 'react-router-dom'
-import { Classroom } from '../Classroom'
+import { Classroom } from '../Classroom/Classroom'
 import { Game } from '../Game/Game'
 import { About } from '../About'
 import { NotFound } from '../NotFound'
-export function Master({ user }) {
+export function Master({ user, pag }) {
 
     return (
         <Fragment>
-            <Router>            <div id="wrapper">
-                <Columna />
+            <div id="wrapper">
+                <Columna user={user} />
                 <div id="content-wrapper" className="d-flex flex-column">
                     <div id="content">
                         <Cabecera user={user} />
                         <div className="container-fluid">
-                            
-                                <Routes>
-                                    <Route path="/" element={<Home user={user} />} />
-                                    <Route path="/classroom/:id" element={<Classroom user={user} />} />
-                                    <Route path="/about" element={<About user={user} />} />
-                                    <Route path="/game/:id" element={<Game user={user} />} />
-                                    <Route path="*" element={<NotFound />} />
-                                </Routes>
-                           
+                            {
+                                (pag === "Home") ?
+                                    <Home user={user} />
+                                    : (pag === "Classroom") ?
+                                        <Classroom user={user} />
+                                        : (pag === "Game") ?
+                                            <Game user={user} />
+                                            : (pag === "About") ?
+                                                <About user={user} />
+                                                : (pag === "NotFound") ?
+                                                    <NotFound user={user} />
+                                                    : null
+                            }
                         </div>
                     </div>
                     <Pie />
@@ -35,7 +38,7 @@ export function Master({ user }) {
             <a className="scroll-to-top rounded" href="#page-top">
                 <i className="fas fa-angle-up"></i>
             </a>
-            </Router>
+
 
         </Fragment>
     )

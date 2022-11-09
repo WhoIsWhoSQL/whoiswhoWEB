@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import { Link } from 'react-router-dom'
-export function Columna() {
+export function Columna({ user }) {
     return (
         <Fragment>
 
@@ -23,110 +23,117 @@ export function Columna() {
                     </Link>
 
                 </li>
+                {(user === null) ?
+                    <Fragment>
+                    </Fragment>
+                    :
+                    <Fragment>
+                        <hr className="sidebar-divider" />
 
-                <hr className="sidebar-divider" />
-
-                <div className="sidebar-heading">
-                    Clases
-                </div>
-
-                <li className="nav-item active">
-                    <a className="nav-link collapsed" href="." data-toggle="collapse" data-target="#collapseTwo"
-                        aria-expanded="true" aria-controls="collapseTwo">
-                        <i className="fas fa-fw fa-cog"></i>
-                        <span>Clase</span>
-                    </a>
-                    <div id="collapseTwo" className="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                        <div className="bg-white py-2 collapse-inner rounded">
-                            <h6 className="collapse-header">Personalizar clases:</h6>
-                            <a className="collapse-item" href="buttons.html">Mis Clases</a>
-                            <a className="collapse-item" href="cards.html">Añadir Clase</a>
+                        <div className="sidebar-heading">
+                            Clases
                         </div>
-                    </div>
-                </li>
-                <hr className="sidebar-divider" />
 
-                <div className="sidebar-heading">
-                    Partidas
-                </div>
-                <li className="nav-item">
-                    <a className="nav-link collapsed" href="." data-toggle="collapse" data-target="#collapseUtilities"
-                        aria-expanded="true" aria-controls="collapseUtilities">
-                        <i className="fas fa-fw fa-wrench"></i>
+                        <li className="nav-item active">
+                            <a className="nav-link collapsed" href="." data-toggle="collapse" data-target="#collapseTwo"
+                                aria-expanded="true" aria-controls="collapseTwo">
+                                <i className="fas fa-fw fa-cog"></i>
+                                <span>Clase</span>
+                            </a>
+                            <div id="collapseTwo" className="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                                <div className="bg-white py-2 collapse-inner rounded">
+                                    <h6 className="collapse-header">Personalizar clases:</h6>
+                                    <a className="collapse-item" href="buttons.html">Mis Clases</a>
+                                    <a className="collapse-item" href="cards.html">Añadir Clase</a>
+                                </div>
+                            </div>
+                        </li>
+                        <hr className="sidebar-divider" />
 
-                        <span>Partidas</span>
-                    </a>
-                    <div id="collapseUtilities" className="collapse" aria-labelledby="headingUtilities"
-                        data-parent="#accordionSidebar">
-                        <div className="bg-white py-2 collapse-inner rounded">
-                            <h6 className="collapse-header">Personalizar partidas:</h6>
-                            <a className="collapse-item" href="utilities-color.html">Nueva Partida</a>
-                            <a className="collapse-item" href="utilities-border.html">Mis Partidas</a>
+                        <div className="sidebar-heading">
+                            Partidas
                         </div>
-                    </div>
-                </li>
+                        <li className="nav-item">
+                            <a className="nav-link collapsed" href="." data-toggle="collapse" data-target="#collapseUtilities"
+                                aria-expanded="true" aria-controls="collapseUtilities">
+                                <i className="fas fa-fw fa-wrench"></i>
 
-                <hr className="sidebar-divider" />
+                                <span>Partidas</span>
+                            </a>
+                            <div id="collapseUtilities" className="collapse" aria-labelledby="headingUtilities"
+                                data-parent="#accordionSidebar">
+                                <div className="bg-white py-2 collapse-inner rounded">
+                                    <h6 className="collapse-header">Personalizar partidas:</h6>
+                                    <a className="collapse-item" href="utilities-color.html">Nueva Partida</a>
+                                    <a className="collapse-item" href="utilities-border.html">Mis Partidas</a>
+                                </div>
+                            </div>
+                        </li>
 
-                <div className="sidebar-heading">
-                    Ejercicios
-                </div>
+                        <hr className="sidebar-divider" />
 
-                <li className="nav-item ">
-                    <a className="nav-link" href="." data-toggle="collapse" data-target="#collapsePages" aria-expanded="true"
-                        aria-controls="collapsePages">
-                        <i className="fas fa-fw fa-folder"></i>
-                        <span>Exercises</span>
-                    </a>
-                    <div id="collapsePages" className="collapse " aria-labelledby="headingPages"
-                        data-parent="#accordionSidebar">
-                        <div className="bg-white py-2 collapse-inner rounded">
-                            <h6 className="collapse-header">Ejercicios disponibles:</h6>
-                            <a className="collapse-item" href="login.html">Nivel 1 WHERE</a>
-                            <a className="collapse-item" href="register.html">Nivel 2 INNER JOIN</a>
-
+                        <div className="sidebar-heading">
+                            Ejercicios
                         </div>
-                    </div>
-                </li>
-                <hr className="sidebar-divider" />
 
-                <div className="sidebar-heading">
-                    Como se ha hecho
-                </div>
-                <li className="nav-item ">
-                    <Link to="about" className="nav-link"><i className="fas fa-fw fa-folder"></i>
-                        <span>Sobre Nosotros</span></Link>
+                        <li className="nav-item ">
+                            <a className="nav-link" href="." data-toggle="collapse" data-target="#collapsePages" aria-expanded="true"
+                                aria-controls="collapsePages">
+                                <i className="fas fa-fw fa-folder"></i>
+                                <span>Exercises</span>
+                            </a>
+                            <div id="collapsePages" className="collapse " aria-labelledby="headingPages"
+                                data-parent="#accordionSidebar">
+                                <div className="bg-white py-2 collapse-inner rounded">
+                                    <h6 className="collapse-header">Ejercicios disponibles:</h6>
+                                    <a className="collapse-item" href="login.html">Nivel 1 WHERE</a>
+                                    <a className="collapse-item" href="register.html">Nivel 2 INNER JOIN</a>
 
-                </li>
+                                </div>
+                            </div>
+                        </li>
+                        <hr className="sidebar-divider" />
 
-
-                <li className="nav-item ">
-                    <a className="nav-link" href="." data-toggle="collapse" data-target="#collapseComoSeHaHecho" aria-expanded="true"
-                        aria-controls="collapsePages">
-                        <i className="fas fa-fw fa-folder"></i>
-                        <span>Como se ha hecho</span>
-                    </a>
-                    <div id="collapseComoSeHaHecho" className="collapse " aria-labelledby="headingPages"
-                        data-parent="#accordionSidebar">
-                        <div className="bg-white py-2 collapse-inner rounded">
-                            <h6 className="collapse-header">Como se ha hecho:</h6>
-                            <Link to="about" className="collapse-item">
-                                La BD con MySQL</Link>
-                            <Link to="about" className="collapse-item">
-                                Una API REST con NodeJS</Link>
-                            <Link to="about" className="collapse-item">Una web con ReactJS</Link>
-                            <Link to="about" className="collapse-item">Despliegue con Docker</Link>
-                            <Link to="about" className="collapse-item">CI/CD con GitHub Actions</Link>
-
+                        <div className="sidebar-heading">
+                            Como se ha hecho
                         </div>
-                    </div>
-                </li>
+                        <li className="nav-item ">
+                            <Link to="about" className="nav-link"><i className="fas fa-fw fa-folder"></i>
+                                <span>Sobre Nosotros</span></Link>
 
+                        </li>
+
+
+                        <li className="nav-item ">
+                            <a className="nav-link" href="." data-toggle="collapse" data-target="#collapseComoSeHaHecho" aria-expanded="true"
+                                aria-controls="collapsePages">
+                                <i className="fas fa-fw fa-folder"></i>
+                                <span>Como se ha hecho</span>
+                            </a>
+                            <div id="collapseComoSeHaHecho" className="collapse " aria-labelledby="headingPages"
+                                data-parent="#accordionSidebar">
+                                <div className="bg-white py-2 collapse-inner rounded">
+                                    <h6 className="collapse-header">Como se ha hecho:</h6>
+                                    <Link to="/docs/bbdd" className="collapse-item">
+                                        La BD con MySQL</Link>
+                                    <Link to="/docs/api" className="collapse-item">
+                                        Una API REST con NodeJS</Link>
+                                    <Link to="/docs/web" className="collapse-item">Una web con ReactJS</Link>
+                                    <Link to="/docs/docker" className="collapse-item">Despliegue con Docker</Link>
+                                    <Link to="/docs/cicd" className="collapse-item">CI/CD con GitHub Actions</Link>
+
+                                </div>
+                            </div>
+                        </li>
+                    </Fragment>
+                }
                 <hr className="sidebar-divider d-none d-md-block" />
 
                 <div className="text-center d-none d-md-inline">
                     <button className="rounded-circle border-0" id="sidebarToggle"></button>
                 </div>
+
+
             </ul>
         </Fragment>
     )

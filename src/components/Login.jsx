@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { loginService  } from '../services/userService'
 
 
@@ -18,12 +19,12 @@ export function Login({changeUser}) {
 
   const handleSubmitLogin = async (e) => {
     e.preventDefault();
-    console.log(email, password);
+    // console.log(email, password);
 
     try {
       
     const response = await loginService({email,password});
-    console.log("respuesta de la api:" + JSON.stringify(response));
+    // console.log("respuesta de la api:" + JSON.stringify(response));
     changeUser(response);
     setPassword('');
     setEmail('');
@@ -59,8 +60,7 @@ export function Login({changeUser}) {
                           <div className="form-group">
                             <div className="custom-control custom-checkbox small">
                               <input type="checkbox" className="custom-control-input" id="customCheck" />
-                              <label className="custom-control-label" htmlFor="customCheck">Remember
-                                Me</label>
+                              <label className="custom-control-label" htmlFor="customCheck">Recuerdame</label>
                             </div>
                           </div>
                           <a href="index.html" onClick={handleSubmitLogin} className="btn btn-primary btn-user btn-block">
@@ -69,11 +69,16 @@ export function Login({changeUser}) {
                           <input type="submit" value="login" className='invisible' />
                         </form>
                         <hr />
+                        {/* <div className="text-center">
+                          <a className="small" href="forgot-password.html">¿No recuerdas tu contraseña?</a>
+                        </div> */}
                         <div className="text-center">
-                          <a className="small" href="forgot-password.html">Forgot Password?</a>
+                        <Link to="register" className='small'>¡Crea una cuenta!</Link>
                         </div>
+
                         <div className="text-center">
-                          <a className="small" href="register.html">Create an Account!</a>
+                         <Link to="docs" className='small'>¿Cómo se ha hecho esta web?</Link>
+                        
                         </div>
                       </div>
                     </div>
