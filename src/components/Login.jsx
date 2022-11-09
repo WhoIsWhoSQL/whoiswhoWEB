@@ -1,11 +1,11 @@
 import React, { Fragment } from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { loginService  } from '../services/userService'
+import { loginService } from '../services/userService'
 
 
 
-export function Login({changeUser}) {
+export function Login({ changeUser }) {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState('');
 
@@ -22,16 +22,18 @@ export function Login({changeUser}) {
     // console.log(email, password);
 
     try {
-      
-    const response = await loginService({email,password});
-    // console.log("respuesta de la api:" + JSON.stringify(response));
-    changeUser(response);
-    setPassword('');
-    setEmail('');
-  } catch (error) {
-   console.log(error)   
-  }
+
+      const response = await loginService({ email, password });
+      // console.log("respuesta de la api:" + JSON.stringify(response));
+      changeUser(response);
+      setPassword('');
+      setEmail('');
+    } catch (error) {
+      console.log(error)
+    }
   };
+  const foto = Math.floor( Math.random() * (23) + 1);
+console.log("foto:"+foto);
   return (
     <Fragment>
       <div >
@@ -41,7 +43,7 @@ export function Login({changeUser}) {
               <div className="card o-hidden border-0 shadow-lg my-5">
                 <div className="card-body p-0">
                   <div className="row">
-                    <div className="col-lg-6 d-none d-lg-block bg-login-image"></div>
+                    <div className="col-lg-6 d-none d-lg-block bg-login-image" style={{backgroundImage: `url(/img/wiw/${foto}.png)` }}></div>
                     <div className="col-lg-6">
                       <div className="p-5">
                         <div className="text-center">
@@ -50,7 +52,7 @@ export function Login({changeUser}) {
                         <form className="user" onSubmit={handleSubmitLogin}>
                           <div className="form-group">
                             <input type="email" className="form-control form-control-user"
-                              id="exampleInputEmail" aria-describedby="emailHelp" onChange={handleChangeEmail} 
+                              id="exampleInputEmail" aria-describedby="emailHelp" onChange={handleChangeEmail}
                               placeholder="Enter Email Address..." value={email} />
                           </div>
                           <div className="form-group">
@@ -73,12 +75,12 @@ export function Login({changeUser}) {
                           <a className="small" href="forgot-password.html">¿No recuerdas tu contraseña?</a>
                         </div> */}
                         <div className="text-center">
-                        <Link to="register" className='small'>¡Crea una cuenta!</Link>
+                          <Link to="register" className='small'>¡Crea una cuenta!</Link>
                         </div>
 
                         <div className="text-center">
-                         <Link to="docs" className='small'>¿Cómo se ha hecho esta web?</Link>
-                        
+                          <Link to="docs" className='small'>¿Cómo se ha hecho esta web?</Link>
+
                         </div>
                       </div>
                     </div>
