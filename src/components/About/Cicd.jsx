@@ -1,7 +1,9 @@
 import React, { Fragment } from 'react'
+import { Link } from 'react-router-dom'
 import { Cabecera } from '../Master/Cabecera'
 import { Columna } from '../Master/Columna'
 import { Pie } from '../Master/Pie'
+
 
 export  function Cicd({user}) {
   return (
