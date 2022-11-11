@@ -7,6 +7,9 @@ import { Classroom } from '../Classroom/Classroom'
 import { Game } from '../Game/Game'
 import { About } from '../About'
 import { NotFound } from '../NotFound'
+import { MyGame } from '../Game/MyGame'
+import { Resultados } from '../Game/Resultados'
+import { ListExercises } from '../Exercises/ListExercises'
 export function Master({ user, pag }) {
 
     return (
@@ -26,9 +29,15 @@ export function Master({ user, pag }) {
                                             <Game user={user} />
                                             : (pag === "About") ?
                                                 <About user={user} />
-                                                : (pag === "NotFound") ?
-                                                    <NotFound user={user} />
-                                                    : null
+                                                : (pag === "ListExercises") ?
+                                                    <ListExercises user={user} />
+                                                    : (pag === "MyGame") ?
+                                                        <MyGame user={user} />
+                                                        : (pag === "Result") ?
+                                                            <Resultados user={user} />
+                                                            : (pag === "NotFound") ?
+                                                                <NotFound user={user} />
+                                                                : null
                             }
                         </div>
                     </div>

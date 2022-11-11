@@ -1,5 +1,5 @@
 import React from 'react'
-import { MyClassrooms } from '../MyClassroom'
+import { MyClassrooms } from '../Classroom/MyClassroom'
 export function HomeStudent({ user }) {
     return (
         <div>

@@ -43,7 +43,7 @@ export function Columna({ user }) {
                             <div id="collapseTwo" className="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                                 <div className="bg-white py-2 collapse-inner rounded">
                                     <h6 className="collapse-header">Personalizar clases:</h6>
-                                    <a className="collapse-item" href="buttons.html">Mis Clases</a>
+                                    <Link to="/" className="collapse-item">Mis Clase</Link>
                                     <a className="collapse-item" href="cards.html">Añadir Clase</a>
                                 </div>
                             </div>
@@ -65,7 +65,8 @@ export function Columna({ user }) {
                                 <div className="bg-white py-2 collapse-inner rounded">
                                     <h6 className="collapse-header">Personalizar partidas:</h6>
                                     <a className="collapse-item" href="utilities-color.html">Nueva Partida</a>
-                                    <a className="collapse-item" href="utilities-border.html">Mis Partidas</a>
+                                    <Link to="/mygame" className="collapse-item">Mis Partidas</Link>
+                                   
                                 </div>
                             </div>
                         </li>
@@ -85,9 +86,8 @@ export function Columna({ user }) {
                             <div id="collapsePages" className="collapse " aria-labelledby="headingPages"
                                 data-parent="#accordionSidebar">
                                 <div className="bg-white py-2 collapse-inner rounded">
-                                    <h6 className="collapse-header">Ejercicios disponibles:</h6>
-                                    <a className="collapse-item" href="login.html">Nivel 1 WHERE</a>
-                                    <a className="collapse-item" href="register.html">Nivel 2 INNER JOIN</a>
+                                    <h6 className="collapse-header">Ejercicios:</h6>
+                                    <Link  className="collapse-item" to="/exercises">Lista de ejercicios</Link>
 
                                 </div>
                             </div>

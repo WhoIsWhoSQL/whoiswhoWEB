@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react'
+import Gravatar from 'react-gravatar';
 import { Link } from 'react-router-dom';
 
 export function Cabecera({ user }) {
@@ -27,8 +28,10 @@ export function Cabecera({ user }) {
                             <a className="nav-link dropdown-toggle" href="." id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span className="mr-2 d-none d-lg-inline text-gray-600 small">Hola <b>{user.name}</b></span>
-                                <img className="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg" alt='' />
+                                
+                                <Gravatar email={user.email} size={50} rating="pg" default="monsterid" className="img-profile rounded-circle" />
+                                {/* <img className="img-profile rounded-circle"
+                                    src="img/undraw_profile.svg" alt='' /> */}
                             </a>
                             <div className="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">

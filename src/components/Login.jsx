@@ -1,14 +1,17 @@
 import React, { Fragment } from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { loginService } from '../services/userService'
-
-
+import {  UserService } from '../services/userService'
+import { useEffect } from 'react';
 
 export function Login({ changeUser }) {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState('');
+  const [foto, setFoto] = useState('');
 
+    useEffect(() => {
+       setFoto(Math.floor( Math.random() * (23) + 1));
+    }, []);
   const handleChangeEmail = (e) => {
     setEmail(e.target.value);
   };
@@ -19,11 +22,11 @@ export function Login({ changeUser }) {
 
   const handleSubmitLogin = async (e) => {
     e.preventDefault();
-    // console.log(email, password);
-
+  
     try {
+      const userService = new UserService(null);
+      const response = await userService.getLogin({email, password});
 
-      const response = await loginService({ email, password });
       // console.log("respuesta de la api:" + JSON.stringify(response));
       changeUser(response);
       setPassword('');
@@ -32,7 +35,6 @@ export function Login({ changeUser }) {
       console.log(error)
     }
   };
-  const foto = Math.floor( Math.random() * (23) + 1);
 console.log("foto:"+foto);
   return (
     <Fragment>
@@ -49,7 +51,7 @@ console.log("foto:"+foto);
                         <div className="text-center">
                           <h1 className="h4 text-gray-900 mb-4">Welcome Back!</h1>
                         </div>
-                        <form className="user" onSubmit={handleSubmitLogin}>
+                        <form  id ="loginForm" className="user" onSubmit={handleSubmitLogin}>
                           <div className="form-group">
                             <input type="email" className="form-control form-control-user"
                               id="exampleInputEmail" aria-describedby="emailHelp" onChange={handleChangeEmail}
@@ -65,22 +67,15 @@ console.log("foto:"+foto);
                               <label className="custom-control-label" htmlFor="customCheck">Recuerdame</label>
                             </div>
                           </div>
-                          <a href="index.html" onClick={handleSubmitLogin} className="btn btn-primary btn-user btn-block">
-                            login
-                          </a>
-                          <input type="submit" value="login" className='invisible' />
+                      
+                          <input type="submit" value="login" className='btn btn-primary btn-user btn-block' />
                         </form>
                         <hr />
-                        {/* <div className="text-center">
-                          <a className="small" href="forgot-password.html">¿No recuerdas tu contraseña?</a>
-                        </div> */}
                         <div className="text-center">
                           <Link to="register" className='small'>¡Crea una cuenta!</Link>
                         </div>
-
                         <div className="text-center">
                           <Link to="docs" className='small'>¿Cómo se ha hecho esta web?</Link>
-
                         </div>
                       </div>
                     </div>
@@ -94,4 +89,3 @@ console.log("foto:"+foto);
     </Fragment>
   )
 }
-

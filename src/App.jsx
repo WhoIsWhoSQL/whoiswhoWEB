@@ -27,12 +27,13 @@ const App = () => {
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('App.WiWSQL.user'));
-     if (user) {
+    if (user) {
       setUser(user);
     }
   }, []);
 
   const changeUser = (user) => {
+    console.log("changeUser", user);
     setUser(user);
     localStorage.setItem('App.WiWSQL.user', JSON.stringify(user));
   }
@@ -48,7 +49,7 @@ const App = () => {
               :
               <Master user={user} pag="Home" />
           } />
-          <Route path="/register" element={<Register />} />
+          <Route path="/register" element={<Register changeUser={changeUser} />} />
           <Route path="/docs" element={<Docs user={user} />} />
           <Route path="/classroom/:id" element={
             (user === null) ?
@@ -56,16 +57,38 @@ const App = () => {
               :
               <Master user={user} pag="Classroom" />
           } />
-          <Route path="/docs/api" element={<Api user={user}/>} />
-          <Route path="/docs/web" element={<Web user={user}/>} />
-          <Route path="/docs/docker" element={<Docker user={user}/>} />
-          <Route path="/docs/bbdd" element={<Bbdd user={user}/>} />
-          <Route path="/docs/cicd" element={<Cicd user={user}/>} />
+          <Route path="/mygame" element={
+            (user === null) ?
+              <Login changeUser={changeUser} />
+              :
+              <Master user={user} pag="MyGame" />
+          } />
+
+          <Route path="/exercises" element={
+            (user === null) ?
+              <Login changeUser={changeUser} />
+              :
+              <Master user={user} pag="ListExercises" />
+          } />
+
+          <Route path="/docs/api" element={<Api user={user} />} />
+          <Route path="/docs/web" element={<Web user={user} />} />
+          <Route path="/docs/docker" element={<Docker user={user} />} />
+          <Route path="/docs/bbdd" element={<Bbdd user={user} />} />
+          <Route path="/docs/cicd" element={<Cicd user={user} />} />
           <Route path="/game/:id" element={
             (user === null) ?
               <Login changeUser={changeUser} />
               :
               <Master user={user} pag="Game" />
+          } />
+
+
+          <Route path="/result/:id" element={
+            (user === null) ?
+              <Login changeUser={changeUser} />
+              :
+              <Master user={user} pag="Result" />
           } />
           <Route path="*" element={<NotFound />} />
         </Routes>
