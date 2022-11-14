@@ -10,7 +10,7 @@ import { Master } from './components/Master/Master';
 //import {Home} from './components/Home'
 import { useState, useEffect } from 'react';
 //import { useEffect } from 'react';
-import { Routes, Route, BrowserRouter as Router } from 'react-router-dom'
+import { Routes, Route, HashRouter as Router } from 'react-router-dom'
 import { Docs } from './components/About/Docs';
 import { Register } from './components/Register';
 import { NotFound } from './components/NotFound';
@@ -23,8 +23,6 @@ import { Api } from './components/About/Api';
 const App = () => {
   const [user, setUser] = useState(null);
 
-
-
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('App.WiWSQL.user'));
     if (user) {
@@ -33,7 +31,7 @@ const App = () => {
   }, []);
 
   const changeUser = (user) => {
-    console.log("changeUser", user);
+  //  console.log("changeUser", user);
     setUser(user);
     localStorage.setItem('App.WiWSQL.user', JSON.stringify(user));
   }

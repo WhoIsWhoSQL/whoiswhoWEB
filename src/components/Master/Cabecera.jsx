@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 export function Cabecera({ user }) {
 
-    console.log("user:" + user);
+  //  console.log("user:" + user);
     const handleLogout = () => {
         localStorage.removeItem('App.WiWSQL.user');
         window.location.reload();

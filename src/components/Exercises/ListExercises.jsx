@@ -10,7 +10,7 @@ export function ListExercises({ user }) {
             const exerciseService = new ExerciseService(user.accessToken);
             exerciseService.getExercises().then((exerciseList) => {
                 setExercises(exerciseList);
-                console.log("exerciseList", exerciseList);
+             //   console.log("exerciseList", exerciseList);
             });
         } catch (error) {
             console.log("error en la api")

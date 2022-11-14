@@ -1,10 +1,10 @@
 import axios from "axios";
 
 export class ExerciseService {
-    baseURL_API = process.env.REACT_APP_BASE_URL_API || 'http://whoiswhosql.cancargol.net:3000/api/v1/'
+    baseURL_API = process.env.REACT_APP_BASE_URL_API || 'https://whoiswhosql.cancargol.net:3000/api/v1/'
     baseURL = this.baseURL_API + "exercises"
     constructor(token = null) {
-        console.log("token: " + token);
+     //   console.log("token: " + token);
         this.config = {
             headers: {
                 Authorization: `Bearer ${token}`
@@ -13,9 +13,9 @@ export class ExerciseService {
     }
 
     async getExercises() {
-        console.log(this.baseURL)
+       // console.log(this.baseURL)
         const response = await axios.get(this.baseURL + "/", this.config);
-        console.log(JSON.stringify(response.data));
+       // console.log(JSON.stringify(response.data));
         return response.data;
     }
 }

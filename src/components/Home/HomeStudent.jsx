@@ -1,5 +1,6 @@
 import React from 'react'
 import { MyClassrooms } from '../Classroom/MyClassroom'
+import {JoinGame} from '../Game/JoinGame'
 export function HomeStudent({ user }) {
     return (
         <div>
@@ -10,12 +11,7 @@ export function HomeStudent({ user }) {
                 </span>
                 <span className="text">Join to a class</span>
             </a>
-            <a href="." className="btn btn-primary btn-icon-split">
-                <span className="icon text-white-50">
-                    <i className="fas fa-flag"></i>
-                </span>
-                <span className="text">Join to a game</span>
-            </a>
+          <JoinGame user={user} />
             <MyClassrooms user={user} />
         </div>
     )

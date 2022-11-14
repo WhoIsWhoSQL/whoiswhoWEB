@@ -13,7 +13,7 @@ export function Classroom({ user }) {
       console.log(JSON.stringify(classroom1));
       setClassroom(classroom1);
     });
-  }, [id]);
+  }, [id,user]);
 
   return (
     <Fragment>

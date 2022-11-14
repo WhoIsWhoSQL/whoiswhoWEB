@@ -35,7 +35,7 @@ export function Login({ changeUser }) {
       console.log(error)
     }
   };
-console.log("foto:"+foto);
+//console.log("foto:"+foto);
   return (
     <Fragment>
       <div >
@@ -45,7 +45,9 @@ console.log("foto:"+foto);
               <div className="card o-hidden border-0 shadow-lg my-5">
                 <div className="card-body p-0">
                   <div className="row">
-                    <div className="col-lg-6 d-none d-lg-block bg-login-image" style={{backgroundImage: `url(/img/wiw/${foto}.png)` }}></div>
+                   {(foto)?<div className="col-lg-6 d-none d-lg-block bg-login-image" style={{backgroundImage: `url(/img/wiw/${foto}.png)` }}></div>
+                   :<div className="col-lg-6 d-none d-lg-block bg-login-image" style={{backgroundImage: `url(/img/wiw/1.png)` }}></div>}
+                   
                     <div className="col-lg-6">
                       <div className="p-5">
                         <div className="text-center">

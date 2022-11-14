@@ -51,13 +51,12 @@ export function NewGame({ user ,recargarPartidas}) {
                                 </button>
                             </div>
                             <div className="modal-body">Selecciona el tipo de ejercicio que quieres</div>
-                            <select onChange={handleSelectExercise}>                            {Exercises.map((ex) => (
-
-                                <option key={ex.exerciseId} value={ex.exerciseId}>Ejercicio {ex.name}</option>
-                            ))}
-
+                            <select onChange={handleSelectExercise}>                           
+                             {Exercises.map((ex) => (
+                                <Fragment key={ex.ExerciseId} >
+                                <option value={ex.ExerciseId}>Ejercicio {ex.name}</option>
+                                </Fragment>))}
                             </select>
-
                             <div className="modal-footer">
                                 <button className="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                                 <a className="btn btn-primary" href="." onClick={handleNuevaPartida}  data-dismiss="modal">Crear Partida</a>
