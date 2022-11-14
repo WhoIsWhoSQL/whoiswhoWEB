@@ -3,15 +3,24 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {  UserService } from '../services/userService'
 import { useEffect } from 'react';
+import Mensajes from './Mensajes';
 
 export function Login({ changeUser }) {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState('');
   const [foto, setFoto] = useState('');
+  const [error, setError] = useState('');
 
     useEffect(() => {
        setFoto(Math.floor( Math.random() * (23) + 1));
     }, []);
+
+    const setAlert = (msg) => {
+      setError(msg);
+      setTimeout(() => {
+          setError('');
+      }, 5000);
+  }
   const handleChangeEmail = (e) => {
     setEmail(e.target.value);
   };
@@ -27,12 +36,13 @@ export function Login({ changeUser }) {
       const userService = new UserService(null);
       const response = await userService.getLogin({email, password});
 
-      // console.log("respuesta de la api:" + JSON.stringify(response));
+      console.log("respuesta de la api:" + JSON.stringify(response));
       changeUser(response);
       setPassword('');
       setEmail('');
     } catch (error) {
-      console.log(error)
+      console.log("error en la api")
+      setAlert("Usuario o contraseña incorrectos");
     }
   };
 //console.log("foto:"+foto);
@@ -53,6 +63,7 @@ export function Login({ changeUser }) {
                         <div className="text-center">
                           <h1 className="h4 text-gray-900 mb-4">Welcome Back!</h1>
                         </div>
+                        {error ? <Mensajes mensaje={error} tipo="danger"></Mensajes> : <Fragment></Fragment>}
                         <form  id ="loginForm" className="user" onSubmit={handleSubmitLogin}>
                           <div className="form-group">
                             <input type="email" className="form-control form-control-user"
