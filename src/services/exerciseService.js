@@ -18,4 +18,21 @@ export class ExerciseService {
        // console.log(JSON.stringify(response.data));
         return response.data;
     }
+
+    async addExerciseToClassroom(classroomId, exerciseId) {
+         console.log(this.baseURL)
+         console.log("classroomId: " + classroomId);
+         const data = { classId:classroomId, exerciseId:exerciseId };
+         console.log("data:" + JSON.stringify(data));
+         const response = await axios.post(this.baseURL + "/add", data, this.config);
+         console.log(JSON.stringify(response.data));
+         return response.data;
+     }
+
+     async startExercise (exerciseId,classId){
+        const data = { classId:classId, exerciseId:exerciseId };
+        const response = await axios.post(this.baseURL + "/start", data, this.config);
+        //console.log("gameeeeeee" + JSON.stringify(response.data));
+        return response.data;
+     }
 }

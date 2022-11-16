@@ -10,7 +10,7 @@ export function Game({ user }) {
   useEffect(() => {
     const gameService = new GameService(user.accessToken);
     gameService.findGame(id).then((gameList) => {
-      console.log(JSON.stringify(gameList));
+    //  console.log(JSON.stringify(gameList));
       setGame(gameList);
     });
 
@@ -26,7 +26,7 @@ export function Game({ user }) {
         <h1>Partida {game.pin}</h1>
         
 
-        {(!user.isTeacher) ? <ListCharacters user={user} pin={game.pin} />: <Fragment></Fragment>}
+        {(!user.isTeacher) ? <ListCharacters user={user} game={game} />: <Fragment></Fragment>}
       </Fragment>
         : <Fragment>
         </Fragment>

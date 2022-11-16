@@ -1,38 +1,36 @@
 import React, { Fragment, useState } from 'react'
 import { redirect } from 'react-router-dom';
-import { GameService } from '../../services/gameService ';
-
-export function JoinGame({ user }) {
+import { ClassroomService } from '../../services/classroomService';
+//
+export function JoinClassroom({ user }) {
     const [pin, setPin] = useState('');
 
 
     const handlechangePin = (e) => {
         setPin(e.target.value);
     }
-    const handleJoinPartida = (e) => {
-
-     //   console.log("nueva partida");
-     //   console.log("user: " + user.accessToken);
-
-        const gameService = new GameService(user.accessToken);
-        gameService.join(pin).then((game) => {
-            console.log("return to join:" + JSON.stringify(game));
-            return redirect("/game/" + game.gameId);
-        });
-
-
+    const handleJoinClase = (e) => {
+        e.preventDefault();
+        console.log("pin:" + pin);
+        const classroomService = new ClassroomService(user.accessToken);
+        classroomService.join(pin).then((result) => {
+            console.log("result:" + JSON.stringify(result));
+            return redirect("/#/classroom/" + result.classId);
+        }
+        );
     }
+
     if (!user.isTeacher) {
         return (
             <Fragment>
-                <a href="." className="btn btn-primary btn-icon-split" data-toggle="modal" data-target="#newJoinModal">
+                <a href="." className="btn btn-primary btn-icon-split" data-toggle="modal" data-target="#newJoinClassModal">
                     <span className="icon text-white-50">
                         <i className="fas fa-flag"></i>
                     </span>
-                    <span className="text">Únete a una partida</span>
+                    <span className="text">Únete a una clase</span>
                 </a>
 
-                <div className="modal fade" id="newJoinModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                <div className="modal fade" id="newJoinClassModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
                     <div className="modal-dialog" role="document">
                         <div className="modal-content">
@@ -42,11 +40,11 @@ export function JoinGame({ user }) {
                                     <span aria-hidden="true">×</span>
                                 </button>
                             </div>
-                            <div className="modal-body">Selecciona el tipo de ejercicio que quieres</div>
+                            <div className="modal-body">Introduce el pin de la clase:</div>
                             <input name='pin' placeholder='PIN...' type='text' onChange={handlechangePin} />
                             <div className="modal-footer">
                                 <button className="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                                <a className="btn btn-primary" href="." onClick={handleJoinPartida} data-dismiss="modal">Crear Partida</a>
+                                <a className="btn btn-primary" href="." onClick={handleJoinClase} data-dismiss="modal">Unirte a la clase</a>
                             </div>
                         </div>
                     </div>
@@ -55,6 +53,7 @@ export function JoinGame({ user }) {
         )
     }
     else {
-        <Fragment></Fragment>
+        return <Fragment></Fragment>
     }
+
 }

@@ -17,7 +17,7 @@ export class PlayMoveService {
 
     async getPlayMoves(pin) {
         const url =this.baseURL + "/" + pin;
-        console.log("url: " + url);
+      //  console.log("url: " + url);
         const response = await axios.get(url, this.config).catch(function (error) {
             if (error.response) {
                 console.log(error.response.data);
