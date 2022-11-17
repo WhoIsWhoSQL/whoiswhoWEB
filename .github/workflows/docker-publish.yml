@@ -25,4 +25,4 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           push: true
-          tags: bernat13/whoiswhosql_api:latest , bernat13/whoiswhosql_api:${{github.event.pull_request.title}}
+          tags: bernat13/whoiswho:latest , bernat13/whoiswho:${{github.event.pull_request.title}}
