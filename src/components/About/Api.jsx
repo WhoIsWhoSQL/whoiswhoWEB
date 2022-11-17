@@ -22,7 +22,8 @@ export  function Api({user}) {
                     <p>Además, se ha documentado la API con Swagger para facilitar su comprensión</p>
                     <p>La documentación de la API se encuentra en la siguiente dirección:</p>
                     <p><a href="https://whoiswhosql.cancargol.net:3000/api/v1/docs/">https://whoiswhosql.cancargol.net:3000/api/v1/docs/</a></p>
-                    
+                    <p> El repositorio del código está en GitHub</p>
+                    <p><a href="https://github.com/WhoIsWhoSQL/whoiswhoAPI">https://github.com/WhoIsWhoSQL/whoiswhoAPI</a></p>
                 </div>
             </div>
             <Pie />

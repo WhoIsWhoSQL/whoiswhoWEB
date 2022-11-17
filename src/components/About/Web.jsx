@@ -58,6 +58,11 @@ export  function Web({user}) {
                     <p>La aplicación web está compuesta por varios estilos, que se encuentran en la carpeta src/styles.</p>
                     <p> Para el estilo, se ha usado bootstrap con una plantilla con licencia libre llamada SB Admin 2</p>
                     <p> </p>
+                    <a href="https://startbootstrap.com/theme/sb-admin-2">SB Admin 2</a>
+                    <p> Repositorio Github</p>
+                    <a href="https://github.com/WhoIsWhoSQL/whoiswhoWEB">Repositorio Github</a>
+                    <p> </p>
+                    <p> </p>
                 </div>
             </div>
             <Pie />
