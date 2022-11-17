@@ -24,7 +24,7 @@ export  function Api({user}) {
                     <p><a href="https://whoiswhosql.cancargol.net:3000/api/v1/docs/">https://whoiswhosql.cancargol.net:3000/api/v1/docs/</a></p>
                     <p> El repositorio del código está en GitHub</p>
                     <p><a href="https://github.com/WhoIsWhoSQL/whoiswhoAPI">https://github.com/WhoIsWhoSQL/whoiswhoAPI</a></p>
-                </div>
+                </div> 
             </div>
             <Pie />
         </div>
