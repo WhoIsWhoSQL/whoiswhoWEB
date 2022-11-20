@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-export function NotFound({ user }) {
+export function NotFound() {
     return (
 
         <div className="text-center">

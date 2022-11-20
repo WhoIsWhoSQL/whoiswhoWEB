@@ -1,15 +1,17 @@
 import React, { Fragment } from 'react'
+import { useAuthContext } from '../../context/AuthContextProvider';
 import { MyClassrooms } from '../Classroom/MyClassroom'
-import { MyGame } from '../Game/MyGame'
 
-export function HomeTeacher({ user }) {
+export function HomeTeacher() {  
+    const { user } = useAuthContext();
+
   return (
     <Fragment>
       <h1 className="h3 mb-4 text-gray-800">Hola  <b>{user.name}</b></h1>
 
-      <MyClassrooms user={user} />
+      <MyClassrooms />
 
-      <MyGame user={user} />
+      
     </Fragment>
   )
 }

@@ -1,17 +1,20 @@
 import React, { Fragment } from 'react'
+import { useAuthContext } from '../../context/AuthContextProvider';
 import { ExerciseService } from '../../services/exerciseService';
 
 
 
 
-export function Exercise({user, ex,handleCrearPartida }) {
+export function Exercise({ ex,handleCrearPartida }) {
+  const { user } = useAuthContext();
 
 const handlePracticar =((ExerciseId, e) => {
-    //console.log("nueva partida con ejercicio", ExerciseId);
+    console.log("nueva partida con ejercicio", ExerciseId);
     const exerciseService = new ExerciseService(user.accessToken);
     exerciseService.startExercise(ExerciseId).then((ejercicio) => {
-       console.log("gameeeeeeee:", JSON.stringify(ejercicio));
-        return window.location.href = '/#/game/' + ejercicio.id;
+        const path='/user/game/' + ejercicio.id;
+        console.log("path:", path);
+        return window.location.href = '/#/user/game/' + ejercicio.id;
     });
 });
   return (

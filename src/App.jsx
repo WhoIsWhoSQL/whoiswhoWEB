@@ -6,9 +6,6 @@ import Post from './components/Post';
 import {Header} from './components/Header';
 import {LeftCard} from './components/LeftCard'; */
 import { Login } from './components/Login';
-import { Master } from './components/Master/Master';
-//import {Home} from './components/Home'
-import { useState, useEffect } from 'react';
 //import { useEffect } from 'react';
 import { Routes, Route, HashRouter as Router } from 'react-router-dom'
 import { Docs } from './components/About/Docs';
@@ -19,79 +16,56 @@ import { Bbdd } from './components/About/Bbdd';
 import { Docker } from './components/About/Docker';
 import { Web } from './components/About/Web';
 import { Api } from './components/About/Api';
+import { Classroom } from './components/Classroom/Classroom';
+import { Game } from './components/Game/Game';
+import { Result } from './components/Game/Result';
+import { ListExercises } from './components/Exercises/ListExercises';
+import { Home } from './components/Home/Home';
+import AuthContextProvider from './context/AuthContextProvider';
+import { PrivateRoute } from './components/router/PrivateRoute';
+import { MyGame } from './components/Game/MyGame';
+import { PublicRoute } from './components/router/PublicRoute';
+import About from './components/About/About';
+
 
 const App = () => {
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    const user = JSON.parse(localStorage.getItem('App.WiWSQL.user'));
-    if (user) {
-      setUser(user);
-    }
-  }, []);
-
-  const changeUser = (user) => {
-  //  console.log("changeUser", user);
-    setUser(user);
-    localStorage.setItem('App.WiWSQL.user', JSON.stringify(user));
-  }
-  // console.log("App user: " + user);
 
   return (
     <Fragment>
-      <Router>
-        <Routes>
-          <Route path="/" element={
-            (user === null) ?
-              <Login changeUser={changeUser} />
-              :
-              <Master user={user} pag="Home" />
-          } />
-          <Route path="/register" element={<Register changeUser={changeUser} />} />
-          <Route path="/docs" element={<Docs user={user} />} />
-          <Route path="/classroom/:id" element={
-            (user === null) ?
-              <Login changeUser={changeUser} />
-              :
-              <Master user={user} pag="Classroom" />
-          } />
-          <Route path="/mygame" element={
-            (user === null) ?
-              <Login changeUser={changeUser} />
-              :
-              <Master user={user} pag="MyGame" />
-          } />
+      <AuthContextProvider>
+        <Router>
+          <Routes>
+          <Route path='/user' element={<PrivateRoute />}>
+            <Route index element={<Home />} />
+            <Route path='/user/classroom/:id' element={<Classroom />} />
+            <Route path='/user/game/:id' element={<Game />} />
+            <Route path='/user/results/:id' element={<Result />} />
+            <Route path='/user/exercises' element={<ListExercises />} />
+            <Route path='/user/mygame' element={<MyGame />} />
+            <Route path="/user/docs/api" element={<Api  />} />
+            <Route path="/user/docs/web" element={<Web  />} />
+            <Route path="/user/docs/docker" element={<Docker  />} />
+            <Route path="/user/docs/bbdd" element={<Bbdd  />} />
+            <Route path="/user/docs/cicd" element={<Cicd  />} />
+            <Route path="/user/about" element={<About />} />
+          </Route>
+          <Route path="/" element={<PublicRoute />}>
+            <Route index element={<Login />} />
+            <Route path="/docs/api" element={<Api  />} />
+            <Route path="/docs/web" element={<Web  />} />
+            <Route path="/docs/docker" element={<Docker  />} />
+            <Route path="/docs/bbdd" element={<Bbdd  />} />
+            <Route path="/docs/cicd" element={<Cicd  />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/docs" element={<Docs  />} />
+          </Route>       
+            
 
-          <Route path="/exercises" element={
-            (user === null) ?
-              <Login changeUser={changeUser} />
-              :
-              <Master user={user} pag="ListExercises" />
-          } />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
 
-          <Route path="/docs/api" element={<Api user={user} />} />
-          <Route path="/docs/web" element={<Web user={user} />} />
-          <Route path="/docs/docker" element={<Docker user={user} />} />
-          <Route path="/docs/bbdd" element={<Bbdd user={user} />} />
-          <Route path="/docs/cicd" element={<Cicd user={user} />} />
-          <Route path="/game/:id" element={
-            (user === null) ?
-              <Login changeUser={changeUser} />
-              :
-              <Master user={user} pag="Game" />
-          } />
-
-
-          <Route path="/result/:id" element={
-            (user === null) ?
-              <Login changeUser={changeUser} />
-              :
-              <Master user={user} pag="Result" />
-          } />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-
-      </Router>
+        </Router>
+      </AuthContextProvider>
     </Fragment>
   );
 

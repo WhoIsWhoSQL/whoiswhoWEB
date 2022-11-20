@@ -1,14 +1,18 @@
 import React, { Fragment, useEffect, useState } from 'react'
+import { useAuthContext } from '../../context/AuthContextProvider';
 import { ExerciseService } from '../../services/exerciseService';
 import { Exercise } from '../Exercises/Exercise';
+import { ListStudents } from './ListStudents';
 
-export function ClassroomTeacher({ user, classroom, RecargarClase }) {
+export function ClassroomTeacher({ classroom, RecargarClase }) {
+    const { user } = useAuthContext();
+
     const [ExerciseId, setExerciseId] = useState(1);
     const [Exercises, setExercises] = useState([]);
-    const exerciseService = new ExerciseService(user.accessToken);
     useEffect(() => {
 
 
+        const exerciseService = new ExerciseService(user.accessToken);
         exerciseService.getExercises().then((listExercise) => {
             // console.log("lista de ejercicios:" + JSON.stringify(listExercise));
             setExercises(listExercise);
@@ -24,6 +28,8 @@ export function ClassroomTeacher({ user, classroom, RecargarClase }) {
 
         console.log("añadir ejercicio:" + ExerciseId);
         console.log("classroom:" + JSON.stringify(classroom));
+
+        const exerciseService = new ExerciseService(user.accessToken);
         exerciseService.addExerciseToClassroom(classroom.classId, ExerciseId).then((listExercise) => {
             console.log("añadido:" + JSON.stringify(listExercise));
             RecargarClase(user, classroom.Id);
@@ -64,24 +70,36 @@ export function ClassroomTeacher({ user, classroom, RecargarClase }) {
             </div>
 
 
-            {classroom?<div className="col-lg-12" >
-                <div className="card shadow mb-4">
-                    <div className="card-header py-3">
-                        <h6 className="m-0 font-weight-bold text-primary">{classroom.name}</h6>
-                        <h2 className="m-0 font-weight-bold text-primary">PIN: {classroom.pin}</h2>
-                    </div>
-                    <div className="card-body">
-                        <p>hola clase, esta es la clase {classroom.name} con id = {classroom.classId}</p>
-                        <p>El pin para unirse a la clase es <b>{classroom.pin}</b> </p>
-                        <h4> Lista de ejercicios disponibles:</h4>
-                        {classroom.exercises.map((ex) => (
-                          <Exercise ex={ex} key={ex.exerciseId} user={user} />
+            {classroom ?
+                <Fragment>
+                    <div className="col-lg-12" >
+                        <div className="card shadow mb-4">
+                            <div className="card-header py-3">
+                                <h6 className="m-0 font-weight-bold text-primary">{classroom.name}</h6>
+                                <h2 className="m-0 font-weight-bold text-primary">PIN: {classroom.pin}</h2>
+                            </div>
+                            <div className="card-body">
+                                <p>hola clase, esta es la clase {classroom.name} con id = {classroom.classId}</p>
+                                <p>El pin para unirse a la clase es <b>{classroom.pin}</b> </p>
+                                <h4> Lista de ejercicios disponibles:</h4>
+                                {classroom.exercises.map((ex) => (
+                                    <Exercise ex={ex} key={ex.exerciseId} />
 
-                        ))}
-                        {classroom.exercises.length===0?<p> No hay ejercicios disponibles</p>:null} 
+                                ))}
+                                {classroom.exercises.length === 0 ? <p> No hay ejercicios disponibles</p> : null}
+
+
+
+
+
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>:<div></div>}
+                    <ListStudents Students={classroom.Students} />
+                </Fragment>
+                :
+                <Fragment></Fragment>
+            }
 
 
         </Fragment>

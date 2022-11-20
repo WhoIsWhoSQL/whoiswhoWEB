@@ -1,0 +1,8 @@
+export const LOGIN = '/login';
+export const PRIVATE = '/user';
+export const LOGOUT = '/user/logout';
+export const CLASSROOM = '/user/classroom/:id'; // :id is a dynamic route
+export const MYGAME = '/user/mygame';
+export const GAME = '/user/game/:id'; // :id is a dynamic route
+export const EXERCISE = '/user/exercise'; // :id is a dynamic route
+export const RESULTS = '/user/results/:id'; // :id is a dynamic route

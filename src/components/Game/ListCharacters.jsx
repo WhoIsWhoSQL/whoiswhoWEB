@@ -2,49 +2,52 @@ import React, { Fragment, useEffect, useState } from 'react'
 import { CharacterService } from '../../services/characterService';
 import { PlayMoveService } from '../../services/playmoveService';
 import uuid from 'react-uuid';
+import { useAuthContext } from '../../context/AuthContextProvider';
 
-export function ListCharacters({ user, game }) {
+export function ListCharacters({ game}) {
+  const { user } = useAuthContext();
   const [characters, setCharacters] = useState();
   const [playmoves, setPlayMoves] = useState();
   const [lastMove, setLastMoves] = useState('');
   const [query, setQuery] = useState();
-
-  const refrescarPersonajes = (() => {
-
-    const characterService = new CharacterService(user.accessToken);
-    characterService.getCharacters(game.pin).then((ListCharacters) => {
-      //   console.log("ListCharactrs:" + ListCharacters);
-      setCharacters(ListCharacters);
-    });
-    const playmoveService = new PlayMoveService(user.accessToken);
-    playmoveService.getPlayMoves(game.pin).then((playmoveList) => {
-      setPlayMoves(playmoveList);
-   //   console.log("playmoves:" + JSON.stringify(playmoveList));
-    });
-
-  })
+  const [refrescar, setRefrescar] = useState(0);
   useEffect(() => {
     try {
-      console.log("pin:" + game.pin);
-      if (game.pin === undefined) {
+      console.log("pin:" + game);
+      if (game === undefined) {
 
       } else {
-        refrescarPersonajes();
+        if (game.pin === undefined) {
+          console.log("no hay pin");
+        } else {
+          console.log("refrescarPersonajes: pin " + game.pin + "user:" + user);
+          const characterService = new CharacterService(user.accessToken);
+          characterService.getCharacters(game.pin).then((ListCharacters) => {
+            console.log("ListCharactrs:" + ListCharacters);
+            setCharacters(ListCharacters);
+          });
+          const playmoveService = new PlayMoveService(user.accessToken);
+          playmoveService.getPlayMoves(game.pin).then((playmoveList) => {
+            setPlayMoves(playmoveList);
+            //   console.log("playmoves:" + JSON.stringify(playmoveList));
+          });
+        }
+        console.log("start_date:"+game.start_date);
+       
       }
     } catch (error) {
-      console.log("error en la api")
+      console.log("error en la api", error)
     }
-  }, [game, user]);
+  }, [game, user, refrescar]);
 
   useEffect(() => {
-   // console.log("se han regrescado los movimientos")
+    // console.log("se han regrescado los movimientos")
     if (playmoves)
       setLastMoves(playmoves[0]);
-    setQuery(lastMove.query);
   }, [playmoves])
 
   useEffect(() => {
-   // console.log("se han regrescado los movimientos")
+    // console.log("se han regrescado los movimientos")
     setQuery(lastMove.query);
   }, [lastMove])
 
@@ -57,7 +60,7 @@ export function ListCharacters({ user, game }) {
     const playmoveService = new PlayMoveService(user.accessToken);
     playmoveService.setPlayMoves(game.pin, query).then((result) => {
       console.log("result:" + JSON.stringify(result));
-      refrescarPersonajes();
+      setRefrescar(refrescar + 1);
     });
   });
 
@@ -82,46 +85,49 @@ export function ListCharacters({ user, game }) {
 
             </Fragment>))}
         </div>
-        <div className="card shadow mb-4">
-          <div className="card-header py-3">
-            <h6 className="m-0 font-weight-bold text-primary">Tu jugada...</h6>
-          </div>
-          <div className="card-body">
 
-            {(characters.length > 1) ? <p className="m-0  mb-4">Tu última consulta ha sido:<span className='text-primary'>{(lastMove) ? lastMove.query : <Fragment></Fragment>}</span>.
-              Llevas :<span className='text-primary'>{(playmoves) ? playmoves.length : <Fragment></Fragment>} </span>intentos
-
-            </p> : <Fragment>
-              <h2 className="m-0 text-primary mb-4"> ¡HAS ACERTADO!</h2>
-              <h3>El personaje oculto era {characters[0].name}</h3>
-              <img src={characters[0].img_picture} alt='imagen' width={'10%'} />
-            </Fragment>}
-
-            <hr />
-            {(playmoves) ? playmoves.map((play) => (<Fragment key={uuid()}>
-              <p><span className={(play.result < -0) ? 'text-danger' : (play.result === 0) ? 'text-warning' : 'text-primary'}>{play.error}</span> {play.query}  </p>
-            </Fragment>)) : <Fragment></Fragment>}
-
-
-            {(characters.length > 1) ? <Fragment>       <div className="row">
-              <div className="col-lg-12">
-                <p className="m-0 font-weight-bold text-primary">Escribe tu próxima consulta</p>
-
-              </div>
+        <Fragment>
+          <div className="card shadow mb-4">
+            <div className="card-header py-3">
+              <h6 className="m-0 font-weight-bold text-primary">Tu jugada...</h6>
             </div>
+            <div className="card-body">
 
-              <div className="row">
-                <div className="col-lg-10">
-                  <textarea type="text" className="form-control" placeholder="Query...." onChange={handlechanguequery} value={query} ></textarea>
+              {(characters.length > 1) ? <p className="m-0  mb-4">Tu última consulta ha sido:<span className='text-primary'>{(lastMove) ? lastMove.query : <Fragment></Fragment>}</span>.
+                Llevas :<span className='text-primary'>{(playmoves) ? playmoves.length : <Fragment></Fragment>} </span>intentos
+
+              </p> : <Fragment>
+                <h2 className="m-0 text-primary mb-4"> ¡HAS ACERTADO!</h2>
+                <h3>El personaje oculto era {characters[0].name}</h3>
+                <img src={characters[0].img_picture} alt='imagen' width={'10%'} />
+              </Fragment>}
+
+              <hr />
+              {(playmoves) ? playmoves.map((play) => (<Fragment key={uuid()}>
+                <p><span className={(play.result < -0) ? 'text-danger' : (play.result === 0) ? 'text-warning' : 'text-primary'}>{play.error}</span> {play.query}  </p>
+              </Fragment>)) : <Fragment></Fragment>}
+
+
+              {(characters.length > 1) ? <Fragment>       <div className="row">
+                <div className="col-lg-12">
+                  <p className="m-0 font-weight-bold text-primary">Escribe tu próxima consulta</p>
+
                 </div>
-                <div className="col-lg-2">
-                  <input type="submit" className='btn btn-primary btn-user btn-block' value="enviar" onClick={handleSubmitMove} />
-                </div>
+              </div>
 
-              </div></Fragment> : <Fragment></Fragment>}
+                <div className="row">
+                  <div className="col-lg-10">
+                    <textarea type="text" className="form-control" placeholder="Query...." onChange={handlechanguequery} value={query} ></textarea>
+                  </div>
+                  <div className="col-lg-2">
+                    <input type="submit" className='btn btn-primary btn-user btn-block' value="enviar" onClick={handleSubmitMove} />
+                  </div>
 
+                </div></Fragment> : <Fragment></Fragment>}
+
+            </div>
           </div>
-        </div>
+        </Fragment> 
         <div className="card shadow mb-4">
           <div className="card-header py-3">
             <div className='row'>

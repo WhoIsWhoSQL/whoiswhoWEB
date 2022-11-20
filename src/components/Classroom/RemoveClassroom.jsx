@@ -1,8 +1,10 @@
 import React, { Fragment } from 'react'
+import { useAuthContext } from '../../context/AuthContextProvider';
 import { ClassroomService } from '../../services/classroomService';
 
-export function RemoveClassroom({ user, classId ,pin,recargarClases}) {
+export function RemoveClassroom({  classId ,pin,recargarClases}) {
 
+    const { user } = useAuthContext();
 
 
     const handleRemoveGame = (e) => {

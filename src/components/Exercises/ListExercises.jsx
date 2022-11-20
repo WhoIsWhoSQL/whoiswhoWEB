@@ -1,10 +1,14 @@
 import React, { Fragment, useEffect, useState } from 'react'
+import { useAuthContext } from '../../context/AuthContextProvider';
 import { ExerciseService } from '../../services/exerciseService';
 import { GameService } from '../../services/gameService ';
+import { Master } from '../Master/Master';
 import { Exercise } from './Exercise';
 
 
-export function ListExercises({ user }) {
+export function ListExercises( ) {
+    const { user } = useAuthContext();
+
     const [Exercises, setExercises] = useState([]);
     useEffect(() => {
         try {
@@ -30,6 +34,7 @@ export function ListExercises({ user }) {
 
 
     return (
+        <Master user={user}>
         <Fragment>
 
             <h1>Ejercicios disponibles</h1>
@@ -43,7 +48,7 @@ export function ListExercises({ user }) {
 
 
 
-        </Fragment>
+        </Fragment></Master>
     );
 };
 

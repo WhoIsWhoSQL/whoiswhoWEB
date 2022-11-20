@@ -4,8 +4,11 @@ import { Link } from 'react-router-dom';
 import {  UserService } from '../services/userService'
 import { useEffect } from 'react';
 import Mensajes from './Mensajes';
+import { useAuthContext } from '../context/AuthContextProvider';
 
 export function Login({ changeUser }) {
+  const { login } = useAuthContext();
+
   const [email, setEmail] = useState();
   const [password, setPassword] = useState('');
   const [foto, setFoto] = useState('');
@@ -37,7 +40,7 @@ export function Login({ changeUser }) {
       const response = await userService.getLogin({email, password});
 
       console.log("respuesta de la api:" + JSON.stringify(response));
-      changeUser(response);
+      login(response);
       setPassword('');
       setEmail('');
     } catch (error) {
