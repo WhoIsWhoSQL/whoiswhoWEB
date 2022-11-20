@@ -1,10 +1,10 @@
 import React, { Fragment, useEffect, useState } from 'react'
-import { Link, Navigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useAuthContext } from '../context/AuthContextProvider';
 import { UserService } from '../services/userService';
 import Mensajes from './Mensajes';
 
-export function Register({ changeUser }) {
+export function Register() {
     const { login } = useAuthContext();
 
     const [email, setEmail] = useState('');
@@ -77,8 +77,8 @@ export function Register({ changeUser }) {
                     console.log("respuesta de la api:" + JSON.stringify(response));
                     const user = await userService.getLogin({ email, password });
                     login(user);
-                    return <Navigate to="/user" />
-//                    return window.location.href = '/';
+                  //  return <Navigate to="/user" />
+                    return window.location.href = '/';
                 }
             }
             else {
@@ -98,7 +98,7 @@ export function Register({ changeUser }) {
                         <div className="col-lg-7">
                             <div className="p-5">
                                 <div className="text-center">
-                                    <h1 className="h4 text-gray-900 mb-4">Create an Account!</h1>
+                                    <h1 className="h4 text-gray-900 mb-4">¡Crea una cuenta!</h1>
                                 </div>
 
                                 {error ? <Mensajes mensaje={error} tipo="danger"></Mensajes> : <Fragment></Fragment>}

@@ -4,6 +4,8 @@ import { useAuthContext } from '../../context/AuthContextProvider';
 export function Columna() {
     const { user } = useAuthContext();
 
+    
+    
     return (
         <Fragment>
 
@@ -12,7 +14,7 @@ export function Columna() {
 
                 <a className="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
                     <div className="sidebar-brand-icon rotate-n-15">
-                        <i className="fas fa-laugh-wink"></i>
+                       <img src='/logo70.png' alt='Logo' />
                     </div>
                     <div className="sidebar-brand-text mx-3">WhoIsWho<sup>SQL</sup></div>
                 </a>
@@ -41,7 +43,7 @@ export function Columna() {
                         <li className="nav-item ">
                             <a className="nav-link collapsed" href="." data-toggle="collapse" data-target="#collapseTwo"
                                 aria-expanded="true" aria-controls="collapseTwo">
-                                 <i class="fas fa-fw fa-user-graduate"></i>
+                                 <i className="fas fa-fw fa-user-graduate"></i>
                                 <span>Clase</span>
                             </a>
                             <div id="collapseTwo" className="collapse " aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -131,9 +133,9 @@ export function Columna() {
                 }
                 <hr className="sidebar-divider d-none d-md-block" />
 
-                <div className="text-center d-none d-md-inline">
+                {/* <div className="text-center d-none d-md-inline" >
                     <button className="rounded-circle border-0" id="sidebarToggle"></button>
-                </div>
+                </div> */}
 
 
             </ul>
