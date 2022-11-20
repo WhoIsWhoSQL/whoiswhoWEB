@@ -1,5 +1,6 @@
 
 import axios from "axios";
+import { useAuthContext } from "../context/AuthContextProvider";
 
 
 
@@ -23,6 +24,11 @@ export class ClassroomService {
                 //         console.log(error.response.data);
                 //       console.log(error.response.status);
                 //     console.log(error.response.headers);
+                if(error.response.status === 403){
+                    const { logout } = useAuthContext();
+                    logout();
+                    window.location.href = "/";
+                }
             }
             console.log("Error en axios");
             return []

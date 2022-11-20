@@ -17,6 +17,7 @@ export function Cabecera() {
         <Fragment>
             <nav className="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
                 <ul className="navbar-nav ml-auto">
+                {(user === null) ?<Fragment>    </Fragment>:
                     <li className="nav-item dropdown no-arrow">
                         {(user.isTeacher) ?
                             <p className="nav-link dropdown-toggle" >
@@ -25,7 +26,7 @@ export function Cabecera() {
                             <p className="nav-link dropdown-toggle" >
                                 Estudiante
                             </p>}
-                    </li>
+                    </li>}
                     <div className="topbar-divider d-none d-sm-block"></div>
                     {(user === null) ?
                         <li className="nav-item dropdown no-arrow">

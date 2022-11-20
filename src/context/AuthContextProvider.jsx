@@ -12,6 +12,7 @@ export default function AuthContextProvider({children}) {
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('App.WiWSQL.user'));
     if (user) {
+    
       setUser(user);
     }
   }, []);
