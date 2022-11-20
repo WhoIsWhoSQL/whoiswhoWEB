@@ -1,8 +1,11 @@
 import React, { Fragment, useEffect, useState } from 'react'
+import { useAuthContext } from '../../context/AuthContextProvider';
 import { ExerciseService } from '../../services/exerciseService';
 import { GameService } from '../../services/gameService ';
 
-export function NewGame({ user ,recargarPartidas}) {
+export function NewGame({ recargarPartidas}) {
+    const { user } = useAuthContext();
+
     const [ExerciseId, setExerciseId] = useState(1);
     const [Exercises, setExercises] = useState([]);
 

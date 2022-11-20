@@ -1,10 +1,12 @@
 import React, { Fragment } from 'react'
 import Gravatar from 'react-gravatar';
 import { Link } from 'react-router-dom';
+import { useAuthContext } from '../../context/AuthContextProvider';
 
-export function Cabecera({ user }) {
+export function Cabecera() {
+    const { user } = useAuthContext();
 
-  //  console.log("user:" + user);
+    //  console.log("user:" + user);
     const handleLogout = () => {
         localStorage.removeItem('App.WiWSQL.user');
         window.location.reload();
@@ -15,10 +17,19 @@ export function Cabecera({ user }) {
         <Fragment>
             <nav className="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
                 <ul className="navbar-nav ml-auto">
+                    <li className="nav-item dropdown no-arrow">
+                        {(user.isTeacher) ?
+                            <p className="nav-link dropdown-toggle" >
+                                Docente
+                            </p> :
+                            <p className="nav-link dropdown-toggle" >
+                                Estudiante
+                            </p>}
+                    </li>
                     <div className="topbar-divider d-none d-sm-block"></div>
                     {(user === null) ?
                         <li className="nav-item dropdown no-arrow">
-                            <Link className="nav-link dropdown-toggle"  to="/">
+                            <Link className="nav-link dropdown-toggle" to="/">
                                 <span className="mr-2 d-none d-lg-inline text-gray-600 small">Login</span>
 
                             </Link>
@@ -28,7 +39,7 @@ export function Cabecera({ user }) {
                             <a className="nav-link dropdown-toggle" href="." id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span className="mr-2 d-none d-lg-inline text-gray-600 small">Hola <b>{user.name}</b></span>
-                                
+
                                 <Gravatar email={user.email} size={50} rating="pg" default="monsterid" className="img-profile rounded-circle" />
                                 {/* <img className="img-profile rounded-circle"
                                     src="img/undraw_profile.svg" alt='' /> */}

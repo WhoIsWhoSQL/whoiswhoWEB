@@ -1,6 +1,9 @@
 import React, { Fragment } from 'react'
 import { Link } from 'react-router-dom'
-export function Columna({ user }) {
+import { useAuthContext } from '../../context/AuthContextProvider';
+export function Columna() {
+    const { user } = useAuthContext();
+
     return (
         <Fragment>
 
@@ -16,9 +19,10 @@ export function Columna({ user }) {
 
                 <hr className="sidebar-divider my-0" />
 
-                <li className="nav-item">
+                <li className="nav-item active">
 
-                    <Link to="/" className="nav-link">                        <i className="fas fa-fw fa-tachometer-alt"></i>
+                    <Link to="/" className="nav-link">                       
+                     <i className="fas fa-fw fa-home"></i>
                         <span>Inicio</span>
                     </Link>
 
@@ -34,18 +38,17 @@ export function Columna({ user }) {
                             Clases
                         </div>
 
-                        <li className="nav-item active">
+                        <li className="nav-item ">
                             <a className="nav-link collapsed" href="." data-toggle="collapse" data-target="#collapseTwo"
                                 aria-expanded="true" aria-controls="collapseTwo">
-                                <i className="fas fa-fw fa-cog"></i>
+                                 <i class="fas fa-fw fa-user-graduate"></i>
                                 <span>Clase</span>
                             </a>
-                            <div id="collapseTwo" className="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                            <div id="collapseTwo" className="collapse " aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                                 <div className="bg-white py-2 collapse-inner rounded">
                                     <h6 className="collapse-header">Personalizar clases:</h6>
                                     <Link to="/" className="collapse-item">Mis Clase</Link>
-                                    <a className="collapse-item" href="cards.html">Añadir Clase</a>
-                                </div>
+                                   </div>
                             </div>
                         </li>
                         <hr className="sidebar-divider" />
@@ -56,7 +59,7 @@ export function Columna({ user }) {
                         <li className="nav-item">
                             <a className="nav-link collapsed" href="." data-toggle="collapse" data-target="#collapseUtilities"
                                 aria-expanded="true" aria-controls="collapseUtilities">
-                                <i className="fas fa-fw fa-wrench"></i>
+                                <i className="fas  fa-play"></i>
 
                                 <span>Partidas</span>
                             </a>
@@ -64,8 +67,7 @@ export function Columna({ user }) {
                                 data-parent="#accordionSidebar">
                                 <div className="bg-white py-2 collapse-inner rounded">
                                     <h6 className="collapse-header">Personalizar partidas:</h6>
-                                    <a className="collapse-item" href="utilities-color.html">Nueva Partida</a>
-                                    <Link to="/mygame" className="collapse-item">Mis Partidas</Link>
+                                    <Link to="/user/mygame" className="collapse-item">Mis Partidas</Link>
                                    
                                 </div>
                             </div>
@@ -80,14 +82,14 @@ export function Columna({ user }) {
                         <li className="nav-item ">
                             <a className="nav-link" href="." data-toggle="collapse" data-target="#collapsePages" aria-expanded="true"
                                 aria-controls="collapsePages">
-                                <i className="fas fa-fw fa-folder"></i>
+                                <i className="fas fa-fw fa-database"></i>
                                 <span>Exercises</span>
                             </a>
                             <div id="collapsePages" className="collapse " aria-labelledby="headingPages"
                                 data-parent="#accordionSidebar">
                                 <div className="bg-white py-2 collapse-inner rounded">
                                     <h6 className="collapse-header">Ejercicios:</h6>
-                                    <Link  className="collapse-item" to="/exercises">Lista de ejercicios</Link>
+                                    <Link  className="collapse-item" to="/user/exercises">Lista de ejercicios</Link>
 
                                 </div>
                             </div>
@@ -98,29 +100,29 @@ export function Columna({ user }) {
                             Como se ha hecho
                         </div>
                         <li className="nav-item ">
-                            <Link to="about" className="nav-link"><i className="fas fa-fw fa-folder"></i>
+                            <Link to="about" className="nav-link"><i className="fas fa-fw fa-address-card"></i>
                                 <span>Sobre Nosotros</span></Link>
 
                         </li>
 
 
                         <li className="nav-item ">
-                            <a className="nav-link" href="." data-toggle="collapse" data-target="#collapseComoSeHaHecho" aria-expanded="true"
+                            <Link to="/user/about" className="nav-link"  data-toggle="collapse" data-target="#collapseComoSeHaHecho" aria-expanded="true"
                                 aria-controls="collapsePages">
-                                <i className="fas fa-fw fa-folder"></i>
-                                <span>Como se ha hecho</span>
-                            </a>
+                                <i className="fas fa-fw fa-cog"></i>
+                                <span>Cómo se ha hecho</span>
+                            </Link>
                             <div id="collapseComoSeHaHecho" className="collapse " aria-labelledby="headingPages"
                                 data-parent="#accordionSidebar">
                                 <div className="bg-white py-2 collapse-inner rounded">
                                     <h6 className="collapse-header">Como se ha hecho:</h6>
-                                    <Link to="/docs/bbdd" className="collapse-item">
+                                    <Link to="/user/docs/bbdd" className="collapse-item">
                                         La BD con MySQL</Link>
-                                    <Link to="/docs/api" className="collapse-item">
+                                    <Link to="/user/docs/api" className="collapse-item">
                                         Una API REST con NodeJS</Link>
-                                    <Link to="/docs/web" className="collapse-item">Una web con ReactJS</Link>
-                                    <Link to="/docs/docker" className="collapse-item">Despliegue con Docker</Link>
-                                    <Link to="/docs/cicd" className="collapse-item">CI/CD con GitHub Actions</Link>
+                                    <Link to="/user/docs/web" className="collapse-item">Una web con ReactJS</Link>
+                                    <Link to="/user/docs/docker" className="collapse-item">Despliegue con Docker</Link>
+                                    <Link to="/user/docs/cicd" className="collapse-item">CI/CD con GitHub Actions</Link>
 
                                 </div>
                             </div>

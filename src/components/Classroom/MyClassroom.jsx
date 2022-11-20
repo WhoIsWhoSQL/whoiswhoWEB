@@ -1,9 +1,12 @@
 import React, { Fragment, useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
+import { useAuthContext } from '../../context/AuthContextProvider';
 import { ClassroomService } from '../../services/classroomService';
 import { NewClassroom } from './NewClassroom';
 import { RemoveClassroom } from './RemoveClassroom';
-export function MyClassrooms({ user }) {
+export function MyClassrooms() {
+    const { user } = useAuthContext();
+
     const [classrooms, setClassrooms] = useState([]);
     useEffect(() => {
         try {
@@ -20,8 +23,15 @@ export function MyClassrooms({ user }) {
         });
     }
     
-    return (
-        <Fragment>
+    return (<Fragment>
+        {(classrooms.length===0)?<Fragment>
+          <div className="card shadow mb-4">
+            <div className="card-header py-3">
+              <h6 className="m-0 font-weight-bold text-primary">No hay ninguna clase...</h6>
+            </div>
+            <div className="card-body"><h2>Aún no hay ninguna clase</h2>
+            </div>
+          </div></Fragment>:<Fragment>
 
             <h1>Mis clases</h1>
             <NewClassroom user={user} obtenerClases={obtenerClases} />
@@ -46,7 +56,7 @@ export function MyClassrooms({ user }) {
                                 <p>            hola clase, esta es la clase {classroom.name} con id = {classroom.classId}
                                 </p>
                                 <p>El pin para unirse a la clase es <b>{classroom.pin}</b></p>
-                                <Link to={`/classroom/${classroom.classId}`} className="btn btn-primary">Ver clase</Link>
+                                <Link to={`/user/classroom/${classroom.classId}`} className="btn btn-primary">Ver clase</Link>
                             </div>
                         </div>
                     </div>
@@ -57,6 +67,7 @@ export function MyClassrooms({ user }) {
 
 
 
+        </Fragment>}
         </Fragment>
     );
 };

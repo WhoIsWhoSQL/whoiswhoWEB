@@ -1,8 +1,11 @@
 import React, { Fragment, useState } from 'react'
-import { redirect } from 'react-router-dom';
+//import { redirect } from 'react-router-dom';
+import { useAuthContext } from '../../context/AuthContextProvider';
 import { ClassroomService } from '../../services/classroomService';
 //
-export function JoinClassroom({ user }) {
+export function JoinClassroom() {
+    const { user } = useAuthContext();
+
     const [pin, setPin] = useState('');
 
 
@@ -14,8 +17,9 @@ export function JoinClassroom({ user }) {
         console.log("pin:" + pin);
         const classroomService = new ClassroomService(user.accessToken);
         classroomService.join(pin).then((result) => {
-            console.log("result:" + JSON.stringify(result));
-            return redirect("/#/classroom/" + result.classId);
+           // console.log("result:" + JSON.stringify(result));
+            return window.location.href = '/#/user/classroom/' + result.classId;
+          //  return redirect("/#/classroom/" + result.classId);
         }
         );
     }

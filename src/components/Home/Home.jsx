@@ -1,14 +1,21 @@
 import React, { Fragment } from 'react'
-import {HomeStudent} from './HomeStudent'
-import {HomeTeacher} from './HomeTeacher'
-export function Home({ user }) {
+import { useAuthContext } from '../../context/AuthContextProvider';
+import { Master } from '../Master/Master'
+import { HomeStudent } from './HomeStudent'
+import { HomeTeacher } from './HomeTeacher'
+export function Home() {
+    const { user } = useAuthContext();
+
     return (
-        <Fragment>
-            {user.isTeacher ?
-                <HomeTeacher user={user} />
-                :
-                <HomeStudent user={user} />
-            }
-        </Fragment>
+        <Master >
+            <Fragment>
+
+                {user.isTeacher ?
+                    <HomeTeacher />
+                    :
+                    <HomeStudent  />
+                }
+            </Fragment>
+        </Master>
     )
 }

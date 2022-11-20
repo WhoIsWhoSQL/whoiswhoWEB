@@ -1,9 +1,11 @@
 import React, { Fragment, useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
+import { useAuthContext } from '../context/AuthContextProvider';
 import { UserService } from '../services/userService';
 import Mensajes from './Mensajes';
 
 export function Register({ changeUser }) {
+    const { login } = useAuthContext();
 
     const [email, setEmail] = useState('');
     const [name, setName] = useState('');
@@ -74,8 +76,9 @@ export function Register({ changeUser }) {
                     const response = await userService.createUser({ name, email, password, isTeacher });
                     console.log("respuesta de la api:" + JSON.stringify(response));
                     const user = await userService.getLogin({ email, password });
-                    changeUser(user);
-                    return window.location.href = '/';
+                    login(user);
+                    return <Navigate to="/user" />
+//                    return window.location.href = '/';
                 }
             }
             else {

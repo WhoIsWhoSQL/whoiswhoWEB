@@ -1,7 +1,10 @@
 import React, { Fragment,  useState } from 'react'
+import { useAuthContext } from '../../context/AuthContextProvider';
 import { ClassroomService } from '../../services/classroomService';
 
-export function NewClassroom({ user, obtenerClases }) {
+export function NewClassroom({ obtenerClases }) {
+    const { user } = useAuthContext();
+
     const [name, setName] = useState('');
     //   const [Exercises, setExercises] = useState([]);
 

@@ -1,8 +1,11 @@
 import React, { Fragment, useState } from 'react'
-import { redirect } from 'react-router-dom';
+//import { Navigate } from 'react-router-dom';
+import { useAuthContext } from '../../context/AuthContextProvider';
 import { GameService } from '../../services/gameService ';
 
-export function JoinGame({ user }) {
+export function JoinGame() {
+    const { user } = useAuthContext();
+
     const [pin, setPin] = useState('');
 
 
@@ -16,8 +19,10 @@ export function JoinGame({ user }) {
 
         const gameService = new GameService(user.accessToken);
         gameService.join(pin).then((game) => {
-            console.log("return to join:" + JSON.stringify(game));
-            return redirect("/game/" + game.gameId);
+       //     console.log("return to join:" + JSON.stringify(game));
+            return window.location.href = '/#/user/game/' + game.gameId;
+       
+          //  return <Navigate to={"/user/game/" + game.gameId} />;
         });
 
 

@@ -16,6 +16,7 @@ export class CharacterService {
     }
 
     async getCharacters(pin) {
+        console.log("holaaaa")
         const url =this.baseURL + "/" + pin;
         console.log("url: " + url);
         const response = await axios.get(url, this.config).catch(function (error) {

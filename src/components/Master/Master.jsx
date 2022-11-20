@@ -2,43 +2,17 @@ import React, { Fragment } from 'react'
 import { Columna } from './Columna'
 import { Cabecera } from './Cabecera'
 import { Pie } from './Pie'
-import { Home } from '../Home/Home'
-import { Classroom } from '../Classroom/Classroom'
-import { Game } from '../Game/Game'
-import { About } from '../About'
-import { NotFound } from '../NotFound'
-import { MyGame } from '../Game/MyGame'
-import { Resultados } from '../Game/Resultados'
-import { ListExercises } from '../Exercises/ListExercises'
-export function Master({ user, pag }) {
+export function Master({  children }) {
 
     return (
         <Fragment>
             <div id="wrapper">
-                <Columna user={user} />
+                <Columna  />
                 <div id="content-wrapper" className="d-flex flex-column">
                     <div id="content">
-                        <Cabecera user={user} />
+                        <Cabecera />
                         <div className="container-fluid">
-                            {
-                                (pag === "Home") ?
-                                    <Home user={user} />
-                                    : (pag === "Classroom") ?
-                                        <Classroom user={user} />
-                                        : (pag === "Game") ?
-                                            <Game user={user} />
-                                            : (pag === "About") ?
-                                                <About user={user} />
-                                                : (pag === "ListExercises") ?
-                                                    <ListExercises user={user} />
-                                                    : (pag === "MyGame") ?
-                                                        <MyGame user={user} />
-                                                        : (pag === "Result") ?
-                                                            <Resultados user={user} />
-                                                            : (pag === "NotFound") ?
-                                                                <NotFound user={user} />
-                                                                : null
-                            }
+                        {children}
                         </div>
                     </div>
                     <Pie />

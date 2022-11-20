@@ -1,7 +1,9 @@
 import React, { Fragment } from 'react'
+import { useAuthContext } from '../../context/AuthContextProvider';
 import { GameService } from '../../services/gameService ';
 
-export function RemoveGame({ user, gameId ,pin,recargarPartidas}) {
+export function RemoveGame({  gameId ,pin,recargarPartidas}) {
+    const { user } = useAuthContext();
 
 
 
