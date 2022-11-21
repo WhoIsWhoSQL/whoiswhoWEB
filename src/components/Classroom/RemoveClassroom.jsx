@@ -34,7 +34,7 @@ export function RemoveClassroom({  classId ,pin,recargarClases}) {
                                         <span aria-hidden="true">×</span>
                                     </button>
                                 </div>
-                                <div className="modal-body">Se borrará la clase con pin {pin}. Esta acción no podrá deshacerse.</div>
+                                <div className="modal-body">Se borrará la clase con pin {pin}. y id {classId} Esta acción no podrá deshacerse.</div>
                                 <div className="modal-footer">
                                     <button className="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                                     <a className="btn btn-primary" href="." onClick={handleRemoveGame} data-dismiss="modal">Borrar clase</a>

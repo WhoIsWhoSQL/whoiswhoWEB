@@ -47,7 +47,7 @@ export function MyClassrooms() {
                                         <h6 className="m-0 font-weight-bold text-primary">{classroom.name}</h6>
                                     </div>
                                     <div className='col-lg-1'>
-                                        <RemoveClassroom user={user} classId={classroom.gameId} recargarClases={obtenerClases} pin={classroom.pin} />
+                                        <RemoveClassroom user={user} classId={classroom.classId} recargarClases={obtenerClases} pin={classroom.pin} />
                                     </div>
                                 </div>
                               
