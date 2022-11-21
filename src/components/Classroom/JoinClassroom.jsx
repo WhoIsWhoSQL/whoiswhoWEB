@@ -17,7 +17,8 @@ export function JoinClassroom() {
         console.log("pin:" + pin);
         const classroomService = new ClassroomService(user.accessToken);
         classroomService.join(pin).then((result) => {
-           // console.log("result:" + JSON.stringify(result));
+            console.log("result:" + JSON.stringify(result));
+            
             return window.location.href = '/#/user/classroom/' + result.classId;
           //  return redirect("/#/classroom/" + result.classId);
         }

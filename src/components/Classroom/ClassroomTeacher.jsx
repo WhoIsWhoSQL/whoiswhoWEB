@@ -32,7 +32,7 @@ export function ClassroomTeacher({ classroom, RecargarClase }) {
         const exerciseService = new ExerciseService(user.accessToken);
         exerciseService.addExerciseToClassroom(classroom.classId, ExerciseId).then((listExercise) => {
             console.log("añadido:" + JSON.stringify(listExercise));
-            RecargarClase(user, classroom.Id);
+            RecargarClase(user, classroom.classId);
         })
     }
     return (

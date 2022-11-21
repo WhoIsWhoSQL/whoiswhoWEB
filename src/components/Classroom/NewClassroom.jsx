@@ -54,7 +54,7 @@ export function NewClassroom({ obtenerClases }) {
 
                             <div className="modal-footer">
                                 <button className="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                                <button className="btn btn-primary"  onClick={handleNuevaClase} data-dismiss="modal">Crear Partida</button>
+                                <button className="btn btn-primary"  onClick={handleNuevaClase} data-dismiss="modal">Crear Clase</button>
                             </div>
                         </div>
                     </div>
