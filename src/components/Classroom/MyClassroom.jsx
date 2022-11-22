@@ -22,8 +22,7 @@ export function MyClassrooms() {
             setClassrooms(classroomList);
         });
     }
-    console.log("classroom:" + JSON.stringify(classrooms));
-    console.log("classroom length: " + classrooms.length);
+    
     return (<Fragment>
         {(classrooms.length===0)?<Fragment>
           <div className="card shadow mb-4">
