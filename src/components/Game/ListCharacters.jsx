@@ -152,8 +152,14 @@ export function ListCharacters({ game}) {
                         </button>
                       </div>
                       <div className="modal-body">
-                        {JSON.stringify(game)}
-
+                       Para hacer una consulta en una tabla, debes poner 
+                       <p>select * from NOMBREDELATABLA</p>
+                       <p>Para poder filtrar los resultados, añadimos la palabra WHERE con una condición. Ejemplo:</p>
+                       <p>select * from Personajes where barba=1</p>
+                       <p> Para poder filtrar por un campo de texto, debemos poner el valor entre ''. Ejemplo:</p>
+                       <p> select * from Personajes where barba=1 and color_pelo='negro'</p>
+                       <p>Como vemos en el ejemplo anterior, podemos concatenar condiciones con el AND dentro de la sentencia where.</p>
+                       <img src="/img/wiw/er1.jpg" alt="imagen" width="50%" />
                       </div>
 
                     </div>
