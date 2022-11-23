@@ -41,4 +41,17 @@ export class PlayMoveService {
         return response.data;
 
     }
+    async findMoves(gameId,playerId,classId){
+        const url =this.baseURL + "/search/";
+        const data = {gameId:gameId,userId:playerId, classId:classId};
+        console.log("url: " + url);
+        const response = await axios.put(url,data, this.config).catch(function (error) {
+            if (error.response) {
+                console.log(error.response.data);
+            }
+            console.log("Error en axios");
+            return []
+        });
+        return response.data;   
+    }
 }

@@ -5,13 +5,13 @@ import { ExerciseService } from '../../services/exerciseService';
 
 
 
-export function Exercise({ ex,handleCrearPartida }) {
+export function Exercise({ ex,handleCrearPartida ,classId}) {
   const { user } = useAuthContext();
 
 const handlePracticar =((ExerciseId, e) => {
     console.log("nueva partida con ejercicio", ExerciseId);
     const exerciseService = new ExerciseService(user.accessToken);
-    exerciseService.startExercise(ExerciseId).then((ejercicio) => {
+    exerciseService.startExercise(ExerciseId,classId).then((ejercicio) => {
         const path='/user/game/' + ejercicio.id;
         console.log("path:", path);
         return window.location.href = '/#/user/game/' + ejercicio.id;

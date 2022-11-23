@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react'
+import { Link } from 'react-router-dom'
 import uuid from 'react-uuid'
 
 export function ListStudents({ Students }) {
@@ -45,12 +46,12 @@ export function ListStudents({ Students }) {
                                         ))
                                     }
                                         <td>
-                                            <button className="btn btn-primary btn-icon-split">
+                                            <Link to={`/user/statistics/student/${item.userId}`} className="btn btn-primary btn-icon-split">
                                                 <span className="icon text-white-50">
                                                     <i className="fas fa-info"></i>
                                                 </span>
                                                 <span className="text">Ver Estadísticas</span>
-                                            </button>
+                                            </Link>
                                         </td>
                                     </tr>
                                 ))}
