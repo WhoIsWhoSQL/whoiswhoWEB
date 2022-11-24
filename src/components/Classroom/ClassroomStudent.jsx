@@ -16,7 +16,7 @@ export  function ClassroomStudent({classroom}) {
               <p>El pin para unirse a la clase es <b>{classroom.pin}</b> </p>
               <h4> Lista de ejercicios disponibles:</h4>
                         {classroom.exercises.map((ex) => (
-                          <Exercise ex={ex} key={ex.exerciseId}/>
+                          <Exercise ex={ex} classId={classroom.classId} key={ex.exerciseId}/>
 
                         ))}
                         {classroom.exercises.length===0?<p> No hay ejercicios disponibles</p>:null} 

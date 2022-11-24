@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { useAuthContext } from '../../context/AuthContextProvider';
 import { GameService } from '../../services/gameService ';
 import { Master } from '../Master/Master';
@@ -12,26 +12,28 @@ export function Game() {
 
 
   const [game, setGame] = useState([]);
-  const [recargar,setRecargar]=useState(0);
-  const [start,setStart] = useState(false);
+  const [recargar, setRecargar] = useState(0);
+  const [start, setStart] = useState(false);
   useEffect(() => {
     const gameService = new GameService(user.accessToken);
     gameService.findGame(id).then((gameList) => {
       setGame(gameList);
-    });
-    if ((game.start_date == null)) {
-    }else{ 
-      setStart(true);
-    }
 
-  }, [id, user,recargar,game.start_date]);
-  
- 
+
+      //   console.log("game",gameList);
+      if ((!(gameList === undefined) && gameList.start_date == null)) {
+      } else {
+        setStart(true);
+      }
+    });
+  }, [id, user, recargar]);
+
+
 
   setTimeout(() => {
     //console.log("mirar valor de start:" + start);
     if (!start) {
-        setRecargar(recargar+1);
+      setRecargar(recargar + 1);
       //  console.log("recargar:" + recargar);
     }
   }, 5000);
@@ -60,18 +62,26 @@ export function Game() {
 
 
 
-          {(!user.isTeacher) ? 
-          <Fragment>
-            {(!start)? <Fragment>
-          <div className="card shadow mb-4">
-            <div className="card-header py-3">
-              <h6 className="m-0 font-weight-bold text-primary">Esperando...</h6>
-            </div>
-            <div className="card-body"><h2>Esperando que empieze la partida</h2>
-            </div>
-          </div></Fragment>:
-          <ListCharacters game={game}  /> }
-          </Fragment>: <Result game={game} empezarPartida={empezarPartida} acabarPartida={acabarPartida} />}
+          {(!user.isTeacher) ?
+            <Fragment>
+              {(!start) ? <Fragment>
+                <div className="card shadow mb-4">
+                  <div className="card-header py-3">
+                    <h6 className="m-0 font-weight-bold text-primary">Esperando...</h6>
+                  </div>
+                  <div className="card-body"><h2>Esperando que empieze la partida</h2>
+                  </div>
+                </div></Fragment> :
+                <ListCharacters game={game} />}
+            </Fragment> : <Fragment>
+              <Result game={game} empezarPartida={empezarPartida} acabarPartida={acabarPartida} />
+              <Link to={`/user/statistics/games/${game.gameId}`} className="btn btn-primary btn-icon-split">
+                                    <span className="icon text-white-50">
+                                        <i className="fas fa-play"></i>
+                                    </span>
+                                    <span className="text">Ver Estadísticas Partida  </span>
+                                </Link>
+            </Fragment>}
         </Fragment>
           : <Fragment>
           </Fragment>
