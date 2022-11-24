@@ -1,4 +1,5 @@
 import React, { Fragment, useEffect, useState } from 'react'
+import { Link } from 'react-router-dom';
 import { useAuthContext } from '../../context/AuthContextProvider';
 import { ExerciseService } from '../../services/exerciseService';
 import { Exercise } from '../Exercises/Exercise';
@@ -95,6 +96,12 @@ export function ClassroomTeacher({ classroom, RecargarClase }) {
                             </div>
                         </div>
                     </div>
+                    <Link to={`/user/statistics/classroom/${classroom.classId}`} className="btn btn-primary btn-icon-split">
+                                        <span className="icon text-white-50">
+                                            <i className="fas fa-play"></i>
+                                        </span>
+                                        <span className="text"> Ver Estadísticas   </span>
+                                    </Link>
                     <ListStudents Students={classroom.Students} />
                 </Fragment>
                 :
