@@ -26,8 +26,9 @@ import { PrivateRoute } from './components/router/PrivateRoute';
 import { MyGame } from './components/Game/MyGame';
 import { PublicRoute } from './components/router/PublicRoute';
 import About from './components/About/About';
-import { Students } from './components/Statistics/Students';
+import { StatisticStudents } from './components/Statistics/StatisticStudents';
 import { StatisticGames } from './components/Statistics/StatisticGames';
+import { StatisticClassroom } from './components/Statistics/StatisticClassroom';
 
 
 const App = () => {
@@ -50,8 +51,9 @@ const App = () => {
             <Route path="/user/docs/bbdd" element={<Bbdd  />} />
             <Route path="/user/docs/cicd" element={<Cicd  />} />
             <Route path="/user/about" element={<About />} />
-            <Route path="/user/statistics/student/:id" element={<Students />} />
+            <Route path="/user/statistics/student/:id" element={<StatisticStudents />} />
             <Route path="/user/statistics/games/:id" element={<StatisticGames />} />
+            <Route path="/user/statistics/classroom/:id" element={<StatisticClassroom />} />
           </Route>
           <Route path="/" element={<PublicRoute />}>
             <Route index element={<Login />} />

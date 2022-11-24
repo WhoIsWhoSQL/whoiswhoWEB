@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom';
+import Gravatar from 'react-gravatar';
+import { useParams } from 'react-router-dom';
+import uuid from 'react-uuid';
 import { useAuthContext } from '../../context/AuthContextProvider';
 import { PlayMoveService } from '../../services/playmoveService';
 import { Master } from '../Master/Master';
 import { Donut } from './Donut';
 import { TablaMovimientos } from './TablaMovimientos';
+import { TablaPartidas } from './TablaPartidas';
 
-export function Students() {
+export function StatisticStudents() {
     const { user } = useAuthContext();
 
     const { id } = useParams();
@@ -15,39 +18,14 @@ export function Students() {
     const [moves, setMoves] = useState();
     const [listaPartidas, setListaPartidas] = useState([]);
 
-    const [dataConsultas, setDataConsultas] = useState([]);
     useEffect(() => {
         const playmoveService = new PlayMoveService(user.accessToken);
         playmoveService.findMoves(0, id, 0).then((moveslist) => {
-            //console.log(JSON.stringify(moveslist));
 
-            console.log("moveslist", moveslist);
             const partidas = moveslist.map(dataItem => dataItem.gameId)
                 .filter((gameId, index, array) => array.indexOf(gameId) === index);
-            console.log("partidas", partidas);
-
-
             setListaPartidas(partidas);
 
-            const numCorrectas = moveslist.filter(item => item.result >= 0).length;
-
-            const numIncorrectas = moveslist.filter(item => item.result < 0).length;
-
-
-            const data = {
-                labels: ['Correctas', 'Incorrectas',],
-                datasets: [
-                    {
-                        label: '# de Consultas',
-                        data: [numCorrectas, numIncorrectas],
-                        backgroundColor: [
-                            '#02634b',
-                            '#e74a3b',
-                        ],
-                    },
-                ],
-            };
-            setDataConsultas(data);
             setMoves(moveslist);
         });
 
@@ -96,44 +74,44 @@ export function Students() {
                                 <div className="chart-pie pt-4">
 
 
-                                    <Donut data={dataConsultas} />
+                                    <Donut moves={moves} key={uuid()} />
 
                                 </div>
                                 <hr />
-                                Número total de consultas: {moves.length}
+                                Consultas correctas: {Math.round((moves.filter(item => item.result >= 0).length * 100)/(moves.length))} %
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="col-xl-4 col-lg-5">
+                        <div className="card shadow mb-4">
+
+                            <div className="card-header py-3">
+                                <h6 className="m-0 font-weight-bold text-primary">Ver Partida</h6>
+                            </div>
+
+                            <div className="card-body">
+                                <div className="chart-pie pt-4">
+                                
+                                <hr />
+                                <h2 className='text-primary'><Gravatar email={moves[0].email} size={100} /> {moves[0].name}</h2>
+                                <hr />
+                                 <h2 className='text-primary'>{moves[0].email}</h2>   
+
+                                </div>
+                                <hr />
+                                Número total de partidas: {listaPartidas.length}
                             </div>
                         </div>
                     </div>
                 </div>
 
 
-                <div className="card shadow mb-4">
-                    <div className="card-header py-3">
-                        <h6 className="m-0 font-weight-bold text-primary">Lista de Partidas</h6>
-                    </div>
+                <TablaPartidas moves={moves} />
 
-                    <div className="card-body">
-                        <div className="table-responsive">
-                            {listaPartidas.map((p) => (
-                            
-                            
-                            <p>
+                <TablaMovimientos moves={moves} />
 
-                                <Link to={`/user/statistics/games/${p}`} className="btn btn-primary btn-icon-split">
-                                    <span className="icon text-white-50">
-                                        <i className="fas fa-play"></i>
-                                    </span>
-                                    <span className="text">Ver Estadísticas Partida con PIN:{moves.filter((m)=> (m.gameId===p ))[0].pin}  y fecha: {moves.filter((m)=> (m.gameId===p ))[0].start_date} </span>
-                                </Link>
-                            </p>))}
-                        </div>
-                    </div>
 
-                </div>
-
-<TablaMovimientos moves={moves} />
-
-        
             </div>
         </Master>
         )
