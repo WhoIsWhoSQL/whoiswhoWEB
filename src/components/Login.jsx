@@ -1,28 +1,28 @@
 import React, { Fragment } from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import {  UserService } from '../services/userService'
-import { useEffect } from 'react';
+import { UserService } from '../services/userService'
+// import { useEffect } from 'react';
 import Mensajes from './Mensajes';
 import { useAuthContext } from '../context/AuthContextProvider';
-
+import { BigHead } from '@bigheads/core'
 export function Login() {
   const { login } = useAuthContext();
 
   const [email, setEmail] = useState();
   const [password, setPassword] = useState('');
-  const [foto, setFoto] = useState('');
+  //  const [foto, setFoto] = useState('');
   const [error, setError] = useState('');
 
-    useEffect(() => {
-       setFoto(Math.floor( Math.random() * (23) + 1));
-    }, []);
+  // useEffect(() => {
+  //    setFoto(Math.floor( Math.random() * (23) + 1));
+  // }, []);
 
-    const setAlert = (msg) => {
-      setError(msg);
-      setTimeout(() => {
-          setError('');
-      }, 5000);
+  const setAlert = (msg) => {
+    setError(msg);
+    setTimeout(() => {
+      setError('');
+    }, 5000);
   }
   const handleChangeEmail = (e) => {
     setEmail(e.target.value);
@@ -34,10 +34,10 @@ export function Login() {
 
   const handleSubmitLogin = async (e) => {
     e.preventDefault();
-  
+
     try {
       const userService = new UserService(null);
-      const response = await userService.getLogin({email, password});
+      const response = await userService.getLogin({ email, password });
 
       console.log("respuesta de la api:" + JSON.stringify(response));
       login(response);
@@ -48,7 +48,7 @@ export function Login() {
       setAlert("Usuario o contraseña incorrectos");
     }
   };
-//console.log("foto:"+foto);
+  //console.log("foto:"+foto);
   return (
     <Fragment>
       <div >
@@ -58,16 +58,20 @@ export function Login() {
               <div className="card o-hidden border-0 shadow-lg my-5">
                 <div className="card-body p-0">
                   <div className="row">
-                   {(foto)?<div className="col-lg-6 d-none d-lg-block bg-login-image" style={{backgroundImage: `url(/img/wiw/${foto}.png)` }}></div>
-                   :<div className="col-lg-6 d-none d-lg-block bg-login-image" style={{backgroundImage: `url(/img/wiw/1.png)` }}></div>}
-                   
+
+
+                    <BigHead className="col-lg-6 d-none d-lg-block bg-login-image" />
+
+                    {/* {(foto)?<div className="col-lg-6 d-none d-lg-block bg-login-image" style={{backgroundImage: `url(/img/wiw/${foto}.png)` }}></div>
+                   :<div className="col-lg-6 d-none d-lg-block bg-login-image" style={{backgroundImage: `url(/img/wiw/1.png)` }}></div>} */}
+
                     <div className="col-lg-6">
                       <div className="p-5">
                         <div className="text-center">
-                         <h1 className="h4 text-gray-900 mb-4">Bienvenido!</h1>
+                          <h1 className="h4 text-gray-900 mb-4">Bienvenido!</h1>
                         </div>
                         {error ? <Mensajes mensaje={error} tipo="danger"></Mensajes> : <Fragment></Fragment>}
-                        <form  id ="loginForm" className="user" onSubmit={handleSubmitLogin}>
+                        <form id="loginForm" className="user" onSubmit={handleSubmitLogin}>
                           <div className="form-group">
                             <input type="email" className="form-control form-control-user"
                               id="exampleInputEmail" aria-describedby="emailHelp" onChange={handleChangeEmail}
@@ -83,7 +87,7 @@ export function Login() {
                               <label className="custom-control-label" htmlFor="customCheck">Recuerdame</label>
                             </div>
                           </div>
-                      
+
                           <input type="submit" value="login" className='btn btn-primary btn-user btn-block' />
                         </form>
                         <hr />

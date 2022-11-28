@@ -1,8 +1,9 @@
-import React, { Fragment, useEffect, useState } from 'react'
+import React, { Fragment, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useAuthContext } from '../context/AuthContextProvider';
 import { UserService } from '../services/userService';
 import Mensajes from './Mensajes';
+import { BigHead } from '@bigheads/core'
 
 export function Register() {
     const { login } = useAuthContext();
@@ -11,13 +12,13 @@ export function Register() {
     const [name, setName] = useState('');
     const [password, setPassword] = useState('');
     const [password2, setPassword2] = useState('');
-    const [foto, setFoto] = useState('');
+   // const [foto, setFoto] = useState('');
     const [isTeacher, setIsTeacher] = useState(false);
     const [error, setError] = useState('');
 
-    useEffect(() => {
-        setFoto(Math.floor(Math.random() * (23) + 1));
-    }, []);
+    // useEffect(() => {
+    //     setFoto(Math.floor(Math.random() * (23) + 1));
+    // }, []);
 
     const setAlert = (msg) => {
         setError(msg);
@@ -94,7 +95,9 @@ export function Register() {
             <div className="card o-hidden border-0 shadow-lg my-5">
                 <div className="card-body p-0">
                     <div className="row">
-                        <div className="col-lg-5 d-none d-lg-block bg-register-image" style={{ backgroundImage: `url(/img/wiw/${foto}.png)` }}></div>
+                    <BigHead className="col-lg-5 d-none d-lg-block bg-login-image" />
+
+                        {/* <div className="col-lg-5 d-none d-lg-block bg-register-image" style={{ backgroundImage: `url(/img/wiw/${foto}.png)` }}></div> */}
                         <div className="col-lg-7">
                             <div className="p-5">
                                 <div className="text-center">
