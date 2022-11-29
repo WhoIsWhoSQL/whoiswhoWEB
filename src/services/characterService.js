@@ -16,14 +16,14 @@ export class CharacterService {
     }
 
     async getCharacters(pin) {
-        console.log("holaaaa")
+     //   console.log("holaaaa")
         const url =this.baseURL + "/" + pin;
-        console.log("url: " + url);
+       // console.log("url: " + url);
         const response = await axios.get(url, this.config).catch(function (error) {
             if (error.response) {
-                console.log(error.response.data);
+         //       console.log(error.response.data);
             }
-            console.log("Error en axios");
+           // console.log("Error en axios");
             return []
         });
         return response.data;

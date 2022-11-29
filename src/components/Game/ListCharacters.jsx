@@ -3,27 +3,29 @@ import { CharacterService } from '../../services/characterService';
 import { PlayMoveService } from '../../services/playmoveService';
 import uuid from 'react-uuid';
 import { useAuthContext } from '../../context/AuthContextProvider';
+import { Faces } from './Faces';
 
-export function ListCharacters({ game}) {
+export function ListCharacters({ game }) {
   const { user } = useAuthContext();
   const [characters, setCharacters] = useState();
   const [playmoves, setPlayMoves] = useState();
   const [lastMove, setLastMoves] = useState('');
   const [query, setQuery] = useState();
   const [refrescar, setRefrescar] = useState(0);
+  const [numDeletes, setNumDeletes] = useState(0);
   useEffect(() => {
     try {
-      console.log("pin:" + game);
+      //      console.log("pin:" + game);
       if (game === undefined) {
 
       } else {
         if (game.pin === undefined) {
-          console.log("no hay pin");
+          //console.log("no hay pin");
         } else {
-          console.log("refrescarPersonajes: pin " + game.pin + "user:" + user);
+          // console.log("refrescarPersonajes: pin " + game.pin + "user:" + user);
           const characterService = new CharacterService(user.accessToken);
           characterService.getCharacters(game.pin).then((ListCharacters) => {
-            console.log("ListCharactrs:" + ListCharacters);
+            //  console.log("ListCharactrs:" + ListCharacters);
             setCharacters(ListCharacters);
           });
           const playmoveService = new PlayMoveService(user.accessToken);
@@ -32,11 +34,11 @@ export function ListCharacters({ game}) {
             //   console.log("playmoves:" + JSON.stringify(playmoveList));
           });
         }
-        console.log("start_date:"+game.start_date);
-       
+        //console.log("start_date:" + game.start_date);
+
       }
     } catch (error) {
-      console.log("error en la api", error)
+      //console.log("error en la api", error)
     }
   }, [game, user, refrescar]);
 
@@ -44,22 +46,32 @@ export function ListCharacters({ game}) {
     // console.log("se han regrescado los movimientos")
     if (playmoves)
       setLastMoves(playmoves[0]);
+
+    // console.log("lastMove:" + JSON.stringify(playmoves));
+    if (playmoves) {
+      const deletes = playmoves.filter((playmove) => contieneDelete(playmove.query));
+      setNumDeletes(deletes.length);
+      // console.log("deletes:" + JSON.stringify(deletes));
+    }
   }, [playmoves])
 
   useEffect(() => {
     // console.log("se han regrescado los movimientos")
     setQuery(lastMove.query);
   }, [lastMove])
+  const contieneDelete = ((query) => {
+    return (query.toLowerCase().includes("delete"));
 
+  });
   const handlechanguequery = ((e) => {
     setQuery(e.target.value);
   });
 
   const handleSubmitMove = (() => {
-    console.log("enviar movimiento conI query:" + query);
+    //  console.log("enviar movimiento conI query:" + query);
     const playmoveService = new PlayMoveService(user.accessToken);
     playmoveService.setPlayMoves(game.pin, query).then((result) => {
-      console.log("result:" + JSON.stringify(result));
+      //  console.log("result:" + JSON.stringify(result));
       setRefrescar(refrescar + 1);
     });
   });
@@ -71,12 +83,12 @@ export function ListCharacters({ game}) {
         <div className='row'>
           {characters.map((character) => (
             <Fragment key={character.Id}>
-              <div className="col-lg-1">
-                <div className="card shadow mb-4">
-                  <div className="card-body p-2">
+              <div className="col-lg-1 p-1">
+                <div className="card shadow mb-1">
+                  <div className="card-body p-1">
                     <p className="m-0 font-weight-bold text-primary">{character.name}</p>
-
-                    <img src={character.img_picture} alt='imagen' width={'100%'} />
+                    <Faces character={character} alt='imagen' width={'100%'} />
+                    {/* <img src={character.img_picture} alt='imagen' width={'100%'} /> */}
 
                   </div>
                 </div>
@@ -99,7 +111,7 @@ export function ListCharacters({ game}) {
               </p> : <Fragment>
                 <h2 className="m-0 text-primary mb-4"> ¡HAS ACERTADO!</h2>
                 <h3>El personaje oculto era {characters[0].name}</h3>
-                <img src={characters[0].img_picture} alt='imagen' width={'10%'} />
+                <Faces character={characters[0]} alt='imagen' width={'20%'} />
               </Fragment>}
 
               <hr />
@@ -107,27 +119,41 @@ export function ListCharacters({ game}) {
                 <p><span className={(play.result < -0) ? 'text-danger' : (play.result === 0) ? 'text-warning' : 'text-primary'}>{play.error}</span> {play.query}  </p>
               </Fragment>)) : <Fragment></Fragment>}
 
-
-              {(characters.length > 1) ? <Fragment>       <div className="row">
-                <div className="col-lg-12">
-                  <p className="m-0 font-weight-bold text-primary">Escribe tu próxima consulta</p>
-
-                </div>
-              </div>
-
+              {(numDeletes > 0) ? <Fragment>
                 <div className="row">
-                  <div className="col-lg-10">
-                    <textarea type="text" className="form-control" placeholder="Query...." onChange={handlechanguequery} value={query} ></textarea>
+                  <div className="col-lg-12">
+                    <p className="m-0 font-weight-bold text-primary">¿Estás intentando un delete?</p>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/i_cVJgIz_Cs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                   </div>
-                  <div className="col-lg-2">
-                    <input type="submit" className='btn btn-primary btn-user btn-block' value="enviar" onClick={handleSubmitMove} />
+                </div>
+
+
+
+
+
+              </Fragment> : <Fragment>
+                {(characters.length > 1) ? <Fragment>
+                  <div className="row">
+                    <div className="col-lg-12">
+                      <p className="m-0 font-weight-bold text-primary">Escribe tu próxima consulta</p>
+
+                    </div>
                   </div>
 
-                </div></Fragment> : <Fragment></Fragment>}
+                  <div className="row">
+                    <div className="col-lg-10">
+                      <textarea type="text" className="form-control" placeholder="Query...." onChange={handlechanguequery} value={query} ></textarea>
+                    </div>
+                    <div className="col-lg-2">
+                      <input type="submit" className='btn btn-primary btn-user btn-block' value="enviar" onClick={handleSubmitMove} />
+                    </div>
+
+                  </div></Fragment> : <Fragment></Fragment>}
+              </Fragment>}
 
             </div>
           </div>
-        </Fragment> 
+        </Fragment>
         <div className="card shadow mb-4">
           <div className="card-header py-3">
             <div className='row'>
@@ -152,14 +178,14 @@ export function ListCharacters({ game}) {
                         </button>
                       </div>
                       <div className="modal-body">
-                       Para hacer una consulta en una tabla, debes poner 
-                       <p>select * from NOMBREDELATABLA</p>
-                       <p>Para poder filtrar los resultados, añadimos la palabra WHERE con una condición. Ejemplo:</p>
-                       <p>select * from Personajes where barba=1</p>
-                       <p> Para poder filtrar por un campo de texto, debemos poner el valor entre ''. Ejemplo:</p>
-                       <p> select * from Personajes where barba=1 and color_pelo='negro'</p>
-                       <p>Como vemos en el ejemplo anterior, podemos concatenar condiciones con el AND dentro de la sentencia where.</p>
-                       <img src="/img/wiw/er1.jpg" alt="imagen" width="50%" />
+                        Para hacer una consulta en una tabla, debes poner
+                        <p>select * from NOMBREDELATABLA</p>
+                        <p>Para poder filtrar los resultados, añadimos la palabra WHERE con una condición. Ejemplo:</p>
+                        <p>select * from Personajes where barba=1</p>
+                        <p> Para poder filtrar por un campo de texto, debemos poner el valor entre ''. Ejemplo:</p>
+                        <p> select * from Personajes where barba=1 and color_pelo='negro'</p>
+                        <p>Como vemos en el ejemplo anterior, podemos concatenar condiciones con el AND dentro de la sentencia where.</p>
+                        <img src="/img/wiw/er1.jpg" alt="imagen" width="50%" />
                       </div>
 
                     </div>
@@ -177,8 +203,8 @@ export function ListCharacters({ game}) {
               <table className="table table-bordered" id="dataTable" width="100%" >
                 <thead>
                   <tr>{
-                    Object.keys(characters[0]).map((key) => (
-                      <th key={uuid()}>{key}
+                    Object.keys(characters[0]).map((key, index) => (
+                      (index === 0) ? <Fragment key={uuid()}></Fragment> : <th key={uuid()}>{key}
                       </th>
                     ))
                   }
@@ -187,8 +213,8 @@ export function ListCharacters({ game}) {
                 </thead>
                 <tfoot>
                   <tr>{
-                    Object.keys(characters[0]).map((key) => (
-                      <th key={uuid()}>{key}
+                    Object.keys(characters[0]).map((key, index) => (
+                      (index === 0) ? <Fragment key={uuid()}></Fragment> : <th key={uuid()}>{key}
                       </th>
                     ))
                   }
@@ -199,8 +225,8 @@ export function ListCharacters({ game}) {
                   {characters.map((item) => (
 
                     <tr key={uuid()}>{
-                      Object.keys(item).map((key) => (
-                        <td key={uuid()}>{item[key]}
+                      Object.keys(item).map((key, index) => (
+                        (index === 0) ? <Fragment key={uuid()}></Fragment> : <td key={uuid()}>{item[key]}
                         </td>
                       ))
                     }

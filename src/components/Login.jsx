@@ -60,7 +60,9 @@ export function Login() {
                   <div className="row">
 
 
-                    <BigHead className="col-lg-6 d-none d-lg-block bg-login-image" />
+                    <BigHead className="col-lg-6 d-none d-lg-block" 
+                    
+                        />
 
                     {/* {(foto)?<div className="col-lg-6 d-none d-lg-block bg-login-image" style={{backgroundImage: `url(/img/wiw/${foto}.png)` }}></div>
                    :<div className="col-lg-6 d-none d-lg-block bg-login-image" style={{backgroundImage: `url(/img/wiw/1.png)` }}></div>} */}

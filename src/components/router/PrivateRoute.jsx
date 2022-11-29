@@ -4,7 +4,7 @@ import { useAuthContext } from '../../context/AuthContextProvider';
 
 
 export  function PrivateRoute() {
-    console.log("PrivateRoute");
+  //  console.log("PrivateRoute");
   const {user} = useAuthContext();
 
   if (!user) {
