@@ -6,6 +6,7 @@ import { UserService } from '../services/userService'
 import Mensajes from './Mensajes';
 import { useAuthContext } from '../context/AuthContextProvider';
 import { BigHead } from '@bigheads/core'
+import { JoinGame } from './Game/JoinGame';
 export function Login() {
   const { login } = useAuthContext();
 
@@ -52,29 +53,32 @@ export function Login() {
   return (
     <Fragment>
       <div >
-       
+
         <div className="container">
           <div className="row justify-content-center ">
-          
+
             <div className="col-xl-10 col-lg-12 col-md-9 mt-5">
-            
+
               <div className="card o-hidden border-0 shadow-lg my-5 ">
-                
+
                 <div className="card-body p-0">
                   <div className="row">
 
+                    <div className='col-lg-6  d-none d-lg-block'>
+                      <BigHead
 
-                    <BigHead className="col-lg-6 d-none d-lg-block" 
-                    
-                        />
-
+                      />
+                      <JoinGame />
+                    </div>
                     {/* {(foto)?<div className="col-lg-6 d-none d-lg-block bg-login-image" style={{backgroundImage: `url(/img/wiw/${foto}.png)` }}></div>
                    :<div className="col-lg-6 d-none d-lg-block bg-login-image" style={{backgroundImage: `url(/img/wiw/1.png)` }}></div>} */}
 
                     <div className="col-lg-6">
                       <div className="p-5">
                         <div className="text-center">
-                          <h1 className="h4 text-gray-900 mb-4">¡Bienvenido!</h1>
+                          <h1 className="h4 ">¿Quieres aprender SQL?</h1>
+                          <h2 className="h5 mb-3">¡Juega al Who SQL Who!</h2>
+                      
                         </div>
                         {error ? <Mensajes mensaje={error} tipo="danger"></Mensajes> : <Fragment></Fragment>}
                         <form id="loginForm" className="user" onSubmit={handleSubmitLogin}>
@@ -110,7 +114,7 @@ export function Login() {
               </div>
               <div className="divlogo d-none d-sm-none d-md-block ">
                 <img src="/logo.svg" alt="logo" className='logologin' />
-                </div>
+              </div>
             </div>
           </div>
         </div>

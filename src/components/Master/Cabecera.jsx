@@ -9,7 +9,7 @@ export function Cabecera() {
     //  console.log("user:" + user);
     const handleLogout = () => {
         localStorage.removeItem('App.WiWSQL.user');
-        window.location.reload();
+        return window.location.href = '/';
     }
 
 
@@ -17,16 +17,16 @@ export function Cabecera() {
         <Fragment>
             <nav className="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
                 <ul className="navbar-nav ml-auto">
-                {(user === null) ?<Fragment>    </Fragment>:
-                    <li className="nav-item dropdown no-arrow">
-                        {(user.isTeacher) ?
-                            <p className="nav-link dropdown-toggle" >
-                                Docente
-                            </p> :
-                            <p className="nav-link dropdown-toggle" >
-                                Estudiante
-                            </p>}
-                    </li>}
+                    {(user === null) ? <Fragment>    </Fragment> :
+                        <li className="nav-item dropdown no-arrow">
+                            {(user.isTeacher) ?
+                                <p className="nav-link dropdown-toggle" >
+                                    Docente
+                                </p> :
+                                <p className="nav-link dropdown-toggle" >
+                                    Estudiante
+                                </p>}
+                        </li>}
                     <div className="topbar-divider d-none d-sm-block"></div>
                     {(user === null) ?
                         <li className="nav-item dropdown no-arrow">
@@ -36,22 +36,29 @@ export function Cabecera() {
                             </Link>
                         </li>
                         :
-                        <li className="nav-item dropdown no-arrow">
-                            <a className="nav-link dropdown-toggle" href="." id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span className="mr-2 d-none d-lg-inline text-gray-600 small">Hola <b>{user.name}</b></span>
+                        <Fragment>
+                            {(user.isGamer) ? <Fragment>
 
-                                <Gravatar email={user.email} size={50} rating="pg" default="monsterid" className="img-profile rounded-circle" />
-                                {/* <img className="img-profile rounded-circle"
+                                <div className="text-center m-5">
+                                    <button  className='btn btn-primary btn-user btn-block botonredondeado mb-2' onClick={handleLogout}>Volver a Jugar</button>
+                                </div>
+    </Fragment> :
+                                <li className="nav-item dropdown no-arrow">
+                                    <a className="nav-link dropdown-toggle" href="." id="userDropdown" role="button"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span className="mr-2 d-none d-lg-inline text-gray-600 small">Hola <b>{user.name}</b></span>
+
+                                        <Gravatar email={user.email} size={50} rating="pg" default="monsterid" className="img-profile rounded-circle" />
+                                        {/* <img className="img-profile rounded-circle"
                                     src="img/undraw_profile.svg" alt='' /> */}
-                            </a>
-                            <div className="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
-                                <a className="dropdown-item" href=".">
-                                    <i className="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
-                                </a>
-                                {/* <a className="dropdown-item" href=".">
+                                    </a>
+                                    <div className="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                        aria-labelledby="userDropdown">
+                                        <a className="dropdown-item" href=".">
+                                            <i className="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                            Profile
+                                        </a>
+                                        {/* <a className="dropdown-item" href=".">
                                     <i className="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Settings
                                 </a>
@@ -59,14 +66,15 @@ export function Cabecera() {
                                     <i className="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Activity Log
                                 </a> */}
-                                <div className="dropdown-divider"></div>
-                                <a className="dropdown-item" href="." data-toggle="modal" data-target="#logoutModal">
-                                    <i className="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
-                                </a>
-                            </div>
-                        </li>
-
+                                        <div className="dropdown-divider"></div>
+                                        <a className="dropdown-item" href="." data-toggle="modal" data-target="#logoutModal">
+                                            <i className="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                            Logout
+                                        </a>
+                                    </div>
+                                </li>
+                            }
+                        </Fragment>
 
                     }
                 </ul>
