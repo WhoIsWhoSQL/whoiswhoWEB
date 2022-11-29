@@ -26,9 +26,11 @@ export function ListExercises( ) {
     const handleCrearPartida = (ExerciseId, e) => {
         //console.log("nueva partida con ejercicio", ExerciseId);
         const gameService = new GameService(user.accessToken);
+
+        
         gameService.create(ExerciseId).then((game) => {
         //    console.log("game", game);
-            return window.location.href = '/game/' + game.id;
+            return window.location.href = '/#/user/game/' + game.id;
         });
     };
 

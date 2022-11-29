@@ -25,7 +25,7 @@ export function NewClassroom({ obtenerClases }) {
 
         return (
             <Fragment>
-                <a href="." className="btn btn-primary btn-icon-split" data-toggle="modal" data-target="#newClassModal">
+                <a href="." className="btn btn-primary btn-icon-split m-2" data-toggle="modal" data-target="#newClassModal">
                     <span className="icon text-white-50">
                         <i className="fas fa-flag"></i>
                     </span>
