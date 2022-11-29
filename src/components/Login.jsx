@@ -70,7 +70,7 @@ export function Login() {
                     <div className="col-lg-6">
                       <div className="p-5">
                         <div className="text-center">
-                          <h1 className="h4 text-gray-900 mb-4">Bienvenido!</h1>
+                          <h1 className="h4 text-gray-900 mb-4">¡Bienvenido!</h1>
                         </div>
                         {error ? <Mensajes mensaje={error} tipo="danger"></Mensajes> : <Fragment></Fragment>}
                         <form id="loginForm" className="user" onSubmit={handleSubmitLogin}>
@@ -86,7 +86,7 @@ export function Login() {
                           <div className="form-group">
                             <div className="custom-control custom-checkbox small">
                               <input type="checkbox" className="custom-control-input" id="customCheck" />
-                              <label className="custom-control-label" htmlFor="customCheck">Recuerdame</label>
+                              <label className="custom-control-label" htmlFor="customCheck">Recuérdame</label>
                             </div>
                           </div>
 
