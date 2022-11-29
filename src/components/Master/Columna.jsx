@@ -4,8 +4,8 @@ import { useAuthContext } from '../../context/AuthContextProvider';
 export function Columna() {
     const { user } = useAuthContext();
 
-    
-    
+
+
     return (
         <Fragment>
 
@@ -14,7 +14,7 @@ export function Columna() {
 
                 <a className="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
                     <div className="sidebar-brand-icon rotate-n-15">
-                       <img src='/logo70.png' alt='Logo' />
+                        <img src='/logo70.png' alt='Logo' />
                     </div>
                     <div className="sidebar-brand-text mx-3">WhoIsWho<sup>SQL</sup></div>
                 </a>
@@ -23,8 +23,8 @@ export function Columna() {
 
                 <li className="nav-item active">
 
-                    <Link to="/" className="nav-link">                       
-                     <i className="fas fa-fw fa-home"></i>
+                    <Link to="/" className="nav-link">
+                        <i className="fas fa-fw fa-home"></i>
                         <span>Inicio</span>
                     </Link>
 
@@ -43,14 +43,14 @@ export function Columna() {
                         <li className="nav-item ">
                             <a className="nav-link collapsed" href="." data-toggle="collapse" data-target="#collapseTwo"
                                 aria-expanded="true" aria-controls="collapseTwo">
-                                 <i className="fas fa-fw fa-user-graduate"></i>
+                                <i className="fas fa-fw fa-user-graduate"></i>
                                 <span>Clase</span>
                             </a>
                             <div id="collapseTwo" className="collapse " aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                                 <div className="bg-white py-2 collapse-inner rounded">
                                     <h6 className="collapse-header">Personalizar clases:</h6>
                                     <Link to="/" className="collapse-item">Mis Clase</Link>
-                                   </div>
+                                </div>
                             </div>
                         </li>
                         <hr className="sidebar-divider" />
@@ -70,34 +70,34 @@ export function Columna() {
                                 <div className="bg-white py-2 collapse-inner rounded">
                                     <h6 className="collapse-header">Personalizar partidas:</h6>
                                     <Link to="/user/mygame" className="collapse-item">Mis Partidas</Link>
-                                   
+
                                 </div>
                             </div>
                         </li>
 
                         <hr className="sidebar-divider" />
-
-                        <div className="sidebar-heading">
-                            Ejercicios
-                        </div>
-
-                        <li className="nav-item ">
-                            <a className="nav-link" href="." data-toggle="collapse" data-target="#collapsePages" aria-expanded="true"
-                                aria-controls="collapsePages">
-                                <i className="fas fa-fw fa-database"></i>
-                                <span>Exercises</span>
-                            </a>
-                            <div id="collapsePages" className="collapse " aria-labelledby="headingPages"
-                                data-parent="#accordionSidebar">
-                                <div className="bg-white py-2 collapse-inner rounded">
-                                    <h6 className="collapse-header">Ejercicios:</h6>
-                                    <Link  className="collapse-item" to="/user/exercises">Lista de ejercicios</Link>
-
-                                </div>
+                      {(user && user.isTeacher)?  <Fragment>
+                            <div className="sidebar-heading">
+                                Ejercicios
                             </div>
-                        </li>
-                        <hr className="sidebar-divider" />
 
+                            <li className="nav-item ">
+                                <a className="nav-link" href="." data-toggle="collapse" data-target="#collapsePages" aria-expanded="true"
+                                    aria-controls="collapsePages">
+                                    <i className="fas fa-fw fa-database"></i>
+                                    <span>Ejercicios</span>
+                                </a>
+                                <div id="collapsePages" className="collapse " aria-labelledby="headingPages"
+                                    data-parent="#accordionSidebar">
+                                    <div className="bg-white py-2 collapse-inner rounded">
+                                        <h6 className="collapse-header">Ejercicios:</h6>
+                                        <Link className="collapse-item" to="/user/exercises">Lista de ejercicios</Link>
+
+                                    </div>
+                                </div>
+                            </li>
+                            <hr className="sidebar-divider" />
+                        </Fragment>:<Fragment></Fragment>}
                         <div className="sidebar-heading">
                             Como se ha hecho
                         </div>
@@ -109,7 +109,7 @@ export function Columna() {
 
 
                         <li className="nav-item ">
-                            <Link to="/user/about" className="nav-link"  data-toggle="collapse" data-target="#collapseComoSeHaHecho" aria-expanded="true"
+                            <Link to="/user/about" className="nav-link" data-toggle="collapse" data-target="#collapseComoSeHaHecho" aria-expanded="true"
                                 aria-controls="collapsePages">
                                 <i className="fas fa-fw fa-cog"></i>
                                 <span>Cómo se ha hecho</span>
