@@ -12,7 +12,7 @@ export function Register() {
     const [name, setName] = useState('');
     const [password, setPassword] = useState('');
     const [password2, setPassword2] = useState('');
-   // const [foto, setFoto] = useState('');
+    // const [foto, setFoto] = useState('');
     const [isTeacher, setIsTeacher] = useState(false);
     const [error, setError] = useState('');
 
@@ -78,7 +78,7 @@ export function Register() {
                     console.log("respuesta de la api:" + JSON.stringify(response));
                     const user = await userService.getLogin({ email, password });
                     login(user);
-                  //  return <Navigate to="/user" />
+                    //  return <Navigate to="/user" />
                     return window.location.href = '/';
                 }
             }
@@ -92,57 +92,69 @@ export function Register() {
     };
     return (
         <Fragment>
-            <div className="card o-hidden border-0 shadow-lg my-5">
-                <div className="card-body p-0">
-                    <div className="row">
-                    <BigHead className="col-lg-5 d-none d-lg-block bg-login-image" />
 
-                        {/* <div className="col-lg-5 d-none d-lg-block bg-register-image" style={{ backgroundImage: `url(/img/wiw/${foto}.png)` }}></div> */}
-                        <div className="col-lg-7">
-                            <div className="p-5">
-                                <div className="text-center">
-                                    <h1 className="h4 text-gray-900 mb-4">¡Crea una cuenta!</h1>
-                                </div>
+            <div className="container">
+                <div className="row justify-content-center ">
 
-                                {error ? <Mensajes mensaje={error} tipo="danger"></Mensajes> : <Fragment></Fragment>}
-                                <form className="user" onSubmit={handleSubmitRegister}>
-                                    <div className="form-group row">
-                                        <div className="col-sm-6 mb-3 mb-sm-0">
-                                            <input type="text" className="form-control form-control-user" id="exampleFirstName" value={name} onChange={handleChangeName} placeholder="Name" />
-                                        </div>
+                    <div className="col-xl-12 col-lg-12 col-md-12 mt-5">
 
-                                        <div className="col-sm-6 mb-3 mb-sm-0">
-                                            <div className="custom-control custom-checkbox form-control-lg">
-                                                <input type="checkbox" className="custom-control-input" id="customCheck" onChange={handleChangeIsTeacher} />
-                                                <label className="custom-control-label" htmlFor="customCheck"  >¿Eres Profesor?</label>
+                        <div className="card o-hidden border-0 shadow-lg m-5">
+                            <div className="card-body p-0">
+                                <div className="row">
+                                    <BigHead className="col-lg-5 d-none d-lg-block bg-login-image" />
+
+                                    {/* <div className="col-lg-5 d-none d-lg-block bg-register-image" style={{ backgroundImage: `url(/img/wiw/${foto}.png)` }}></div> */}
+                                    <div className="col-lg-7">
+                                        <div className="p-5">
+                                            <div className="text-center">
+                                                <h1 className="h4 text-gray-900 mb-4">¡Crea una cuenta!</h1>
+                                            </div>
+
+                                            {error ? <Mensajes mensaje={error} tipo="danger"></Mensajes> : <Fragment></Fragment>}
+                                            <form className="user" onSubmit={handleSubmitRegister}>
+                                                <div className="form-group row">
+                                                    <div className="col-sm-6 mb-3 mb-sm-0">
+                                                        <input type="text" className="form-control form-control-user" id="exampleFirstName" value={name} onChange={handleChangeName} placeholder="Name" />
+                                                    </div>
+
+                                                    <div className="col-sm-6 mb-3 mb-sm-0">
+                                                        <div className="custom-control custom-checkbox form-control-lg">
+                                                            <input type="checkbox" className="custom-control-input" id="customCheck" onChange={handleChangeIsTeacher} />
+                                                            <label className="custom-control-label" htmlFor="customCheck"  >¿Eres Profesor?</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className="form-group">
+                                                    <input type="email" className="form-control form-control-user" id="exampleInputEmail"
+                                                        placeholder="Email Address" value={email} onChange={handleChangeEmail} />
+                                                </div>
+                                                <div className="form-group row">
+                                                    <div className="col-sm-6 mb-3 mb-sm-0">
+                                                        <input type="password" className="form-control form-control-user"
+                                                            id="exampleInputPassword" value={password} placeholder="Password" onChange={handleChangePassword} />
+                                                    </div>
+                                                    <div className="col-sm-6">
+                                                        <input type="password" className="form-control form-control-user"
+                                                            id="exampleRepeatPassword" placeholder="Repeat Password" value={password2} onChange={handleChangePassword2} />
+                                                    </div>
+                                                </div>
+                                                <input type="submit" value="¡Registrate!" className='btn btn-primary btn-user btn-block' />
+                                            </form>
+                                            <hr />
+                                            <div className="text-center">
+                                                <Link to="/" className="small">¿Ya tienes una cuenta? </Link>
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="form-group">
-                                        <input type="email" className="form-control form-control-user" id="exampleInputEmail"
-                                            placeholder="Email Address" value={email} onChange={handleChangeEmail} />
-                                    </div>
-                                    <div className="form-group row">
-                                        <div className="col-sm-6 mb-3 mb-sm-0">
-                                            <input type="password" className="form-control form-control-user"
-                                                id="exampleInputPassword" value={password} placeholder="Password" onChange={handleChangePassword} />
-                                        </div>
-                                        <div className="col-sm-6">
-                                            <input type="password" className="form-control form-control-user"
-                                                id="exampleRepeatPassword" placeholder="Repeat Password" value={password2} onChange={handleChangePassword2} />
-                                        </div>
-                                    </div>
-                                    <input type="submit" value="¡Registrate!" className='btn btn-primary btn-user btn-block' />
-                                </form>
-                                <hr />
-                                <div className="text-center">
-                                    <Link to="/" className="small">¿Ya tienes una cuenta? </Link>
                                 </div>
                             </div>
+                        </div >
+                        <div className="divlogoregistro d-none d-sm-none d-md-block">
+                            <img src="/logo.svg" alt="logo" className='logologin' />
                         </div>
                     </div>
                 </div>
-            </div >
+            </div>
         </Fragment >
     )
 }

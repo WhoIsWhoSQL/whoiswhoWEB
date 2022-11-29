@@ -10,11 +10,11 @@ export function Columna() {
         <Fragment>
 
 
-            <ul className="navbar-nav bg-gradient-green sidebar sidebar-dark accordion" id="accordionSidebar">
+            <ul className="navbar-nav bg-gradient-green sidebar sidebar accordion" id="accordionSidebar">
 
                 <a className="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
                     <div className="sidebar-brand-icon rotate-n-15">
-                        <img src='/logo70.png' alt='Logo' />
+                    <img src="/logo.svg" alt="logo" className='logocolumna' />
                     </div>
                     <div className="sidebar-brand-text mx-3">WhoIsWho<sup>SQL</sup></div>
                 </a>

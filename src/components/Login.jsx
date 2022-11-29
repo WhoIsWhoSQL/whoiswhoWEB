@@ -52,10 +52,14 @@ export function Login() {
   return (
     <Fragment>
       <div >
+       
         <div className="container">
-          <div className="row justify-content-center">
-            <div className="col-xl-10 col-lg-12 col-md-9">
-              <div className="card o-hidden border-0 shadow-lg my-5">
+          <div className="row justify-content-center ">
+          
+            <div className="col-xl-10 col-lg-12 col-md-9 mt-5">
+            
+              <div className="card o-hidden border-0 shadow-lg my-5 ">
+                
                 <div className="card-body p-0">
                   <div className="row">
 
@@ -104,6 +108,9 @@ export function Login() {
                   </div>
                 </div>
               </div>
+              <div className="divlogo d-none d-sm-none d-md-block ">
+                <img src="/logo.svg" alt="logo" className='logologin' />
+                </div>
             </div>
           </div>
         </div>

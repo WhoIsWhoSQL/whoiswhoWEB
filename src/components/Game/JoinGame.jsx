@@ -30,7 +30,7 @@ export function JoinGame() {
     if (!user.isTeacher) {
         return (
             <Fragment>
-                <a href="." className="btn btn-primary btn-icon-split" data-toggle="modal" data-target="#newJoinModal">
+                <a href="." className="btn btn-primary btn-icon-split m-2" data-toggle="modal" data-target="#newJoinModal">
                     <span className="icon text-white-50">
                         <i className="fas fa-flag"></i>
                     </span>
@@ -47,9 +47,11 @@ export function JoinGame() {
                                     <span aria-hidden="true">×</span>
                                 </button>
                             </div>
-                            <div className="modal-body">Selecciona el tipo de ejercicio que quieres</div>
-                            <input name='pin' placeholder='PIN...' type='text' onChange={handlechangePin} />
-                            <div className="modal-footer">
+                            <div className="modal-body">Selecciona el tipo de ejercicio que quieres
+                            <input className="form-control form-control-user" name='pin' placeholder='PIN...' type='text' onChange={handlechangePin} />
+                           
+                            </div>
+                             <div className="modal-footer">
                                 <button className="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                                 <a className="btn btn-primary" href="." onClick={handleJoinPartida} data-dismiss="modal">Crear Partida</a>
                             </div>

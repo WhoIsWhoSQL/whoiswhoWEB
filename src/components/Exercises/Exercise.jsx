@@ -29,7 +29,7 @@ const handlePracticar =((ExerciseId, e) => {
               <img src={ex.img_tableDiagram} alt="imagen" width={'50%'} />
             </p>
 
-        {handleCrearPartida?    <button className="btn btn-primary btn-icon-split" onClick={(e) => handleCrearPartida(ex.exerciseId, e)} value={ex.exerciseId} >
+        {handleCrearPartida?    <button className="btn btn-primary btn-icon-split" onClick={(e) => handleCrearPartida(ex.ExerciseId, e)} value={ex.exerciseId} >
               <span className="icon text-white-50" value={ex.exerciseId}>
                 <i value={ex.exerciseId} className="fas fa-flag" ></i>
               </span>
