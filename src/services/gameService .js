@@ -17,21 +17,21 @@ export class GameService {
     }
 
     async getGames() {
-        console.log(this.baseURL)
+       // console.log(this.baseURL)
         const response = await axios.get(this.baseURL + "/", this.config);
-        console.log(JSON.stringify(response.data));
+        //console.log(JSON.stringify(response.data));
         return response.data;
     }
 
 
     async findGame(gameId) {
         try {
-            console.log(this.baseURL)
+         //   console.log(this.baseURL)
         const response = await axios.get(this.baseURL + "/" + gameId, this.config);
-        console.log(JSON.stringify(response.data));
+      //  console.log(JSON.stringify(response.data));
         return response.data;
         } catch (error) {
-            console.log("error en la api");
+        //    console.log("error en la api");
         }
         
     }
@@ -53,14 +53,14 @@ export class GameService {
     async updateStart(id){
         const path = this.baseURL +'/start/' + id;
         const response = await  axios.put(path,this.config);
-        console.log(JSON.stringify(response));
+     //   console.log(JSON.stringify(response));
         return response.data;
     }
 
     async updateStop(id){
         const path = this.baseURL +'/stop/' + id;
         const response = await  axios.put(path,this.config);
-        console.log(JSON.stringify(response));
+       // console.log(JSON.stringify(response));
         return response.data;
     }
     async remove(gameId) {
