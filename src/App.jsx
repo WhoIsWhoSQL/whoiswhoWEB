@@ -29,6 +29,7 @@ import About from './components/About/About';
 import { StatisticStudents } from './components/Statistics/StatisticStudents';
 import { StatisticGames } from './components/Statistics/StatisticGames';
 import { StatisticClassroom } from './components/Statistics/StatisticClassroom';
+import { GameRoute } from './components/router/GameRoute';
 
 
 const App = () => {
@@ -38,34 +39,39 @@ const App = () => {
       <AuthContextProvider>
         <Router>
           <Routes>
-          <Route path='/user' element={<PrivateRoute />}>
-            <Route index element={<Home />} />
-            <Route path='/user/classroom/:id' element={<Classroom />} />
-            <Route path='/user/game/:id' element={<Game />} />
-            <Route path='/user/results/:id' element={<Result />} />
-            <Route path='/user/exercises' element={<ListExercises />} />
-            <Route path='/user/mygame' element={<MyGame />} />
-            <Route path="/user/docs/api" element={<Api  />} />
-            <Route path="/user/docs/web" element={<Web  />} />
-            <Route path="/user/docs/docker" element={<Docker  />} />
-            <Route path="/user/docs/bbdd" element={<Bbdd  />} />
-            <Route path="/user/docs/cicd" element={<Cicd  />} />
-            <Route path="/user/about" element={<About />} />
-            <Route path="/user/statistics/student/:id" element={<StatisticStudents />} />
-            <Route path="/user/statistics/games/:id" element={<StatisticGames />} />
-            <Route path="/user/statistics/classroom/:id" element={<StatisticClassroom />} />
-          </Route>
-          <Route path="/" element={<PublicRoute />}>
-            <Route index element={<Login />} />
-            <Route path="/docs/api" element={<Api  />} />
-            <Route path="/docs/web" element={<Web  />} />
-            <Route path="/docs/docker" element={<Docker  />} />
-            <Route path="/docs/bbdd" element={<Bbdd  />} />
-            <Route path="/docs/cicd" element={<Cicd  />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/docs" element={<Docs  />} />
-          </Route>       
-            
+            <Route path='/user' element={<PrivateRoute />}>
+              <Route index element={<Home />} />
+              <Route path='/user/classroom/:id' element={<Classroom />} />
+              <Route path='/user/game/:id' element={<Game />} />
+              <Route path='/user/results/:id' element={<Result />} />
+              <Route path='/user/exercises' element={<ListExercises />} />
+              <Route path='/user/mygame' element={<MyGame />} />
+              <Route path="/user/docs/api" element={<Api />} />
+              <Route path="/user/docs/web" element={<Web />} />
+              <Route path="/user/docs/docker" element={<Docker />} />
+              <Route path="/user/docs/bbdd" element={<Bbdd />} />
+              <Route path="/user/docs/cicd" element={<Cicd />} />
+              <Route path="/user/about" element={<About />} />
+              <Route path="/user/statistics/student/:id" element={<StatisticStudents />} />
+              <Route path="/user/statistics/games/:id" element={<StatisticGames />} />
+              <Route path="/user/statistics/classroom/:id" element={<StatisticClassroom />} />
+            </Route>
+            <Route path='/game' element={<GameRoute />}>
+              <Route path='/game/:id' element={<Game />} />
+
+            </Route>
+            <Route path="/" element={<PublicRoute />}>
+              <Route index element={<Login />} />
+              <Route path="/docs/api" element={<Api />} />
+              <Route path="/docs/web" element={<Web />} />
+              <Route path="/docs/docker" element={<Docker />} />
+              <Route path="/docs/bbdd" element={<Bbdd />} />
+              <Route path="/docs/cicd" element={<Cicd />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/docs" element={<Docs />} />
+
+            </Route>
+
 
             <Route path="*" element={<NotFound />} />
           </Routes>

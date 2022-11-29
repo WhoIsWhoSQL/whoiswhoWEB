@@ -1,15 +1,18 @@
-import {Navigate, Outlet} from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
 
 import { useAuthContext } from '../../context/AuthContextProvider';
 
 
-export  function PublicRoute() {
-  const {user} = useAuthContext();
+export function PublicRoute() {
+  const { user } = useAuthContext();
 
   if (user) {
-    return <Navigate to='/user' />;
+    if (user.isGamer) {
+      return <Navigate to="/game" />;
+    } else {
+      return <Navigate to='/user' />;
+    }
   }
-
   return (
     <div>
       <Outlet />

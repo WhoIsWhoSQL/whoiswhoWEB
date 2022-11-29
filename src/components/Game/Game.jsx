@@ -56,7 +56,7 @@ export function Game() {
   }
 
   return (
-    <Master user={user}>
+    <Master >
       <Fragment>
         {(game) ? <Fragment>
 
@@ -76,11 +76,11 @@ export function Game() {
             </Fragment> : <Fragment>
               <Result game={game} empezarPartida={empezarPartida} acabarPartida={acabarPartida} />
               <Link to={`/user/statistics/games/${game.gameId}`} className="btn btn-primary btn-icon-split">
-                                    <span className="icon text-white-50">
-                                        <i className="fas fa-play"></i>
-                                    </span>
-                                    <span className="text">Ver Estadísticas Partida  </span>
-                                </Link>
+                <span className="icon text-white-50">
+                  <i className="fas fa-play"></i>
+                </span>
+                <span className="text">Ver Estadísticas Partida  </span>
+              </Link>
             </Fragment>}
         </Fragment>
           : <Fragment>
