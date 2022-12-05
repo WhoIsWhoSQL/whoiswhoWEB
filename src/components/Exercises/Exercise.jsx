@@ -26,7 +26,7 @@ const handlePracticar =((ExerciseId, e) => {
           </div>
           <div className="card-body">
             <p>         {ex.description}
-              <img src={ex.img_tableDiagram} alt="imagen" width={'50%'} />
+              <img src={ex.img_tableDiagram} alt="imagen" width={'100%'} />
             </p>
 
         {handleCrearPartida?    <button className="btn btn-primary btn-icon-split" onClick={(e) => handleCrearPartida(ex.ExerciseId, e)} value={ex.exerciseId} >

@@ -86,7 +86,7 @@ export function ListCharacters({ game }) {
               <div className="col-lg-1 p-1">
                 <div className="card shadow mb-1">
                   <div className="card-body p-1">
-                    <p className="m-0 font-weight-bold text-primary">{character.name}</p>
+                    <p className="m-0 font-weight-bold text-primary">{character.nombre}</p>
                     <Faces character={character} alt='imagen' width={'100%'} />
                     {/* <img src={character.img_picture} alt='imagen' width={'100%'} /> */}
 
@@ -110,7 +110,7 @@ export function ListCharacters({ game }) {
 
               </p> : <Fragment>
                 <h2 className="m-0 text-primary mb-4"> ¡HAS ACERTADO!</h2>
-                <h3>El personaje oculto era {characters[0].name}</h3>
+                <h3>El personaje oculto era {characters[0].nombre}</h3>
                 <Faces character={characters[0]} alt='imagen' width={'20%'} />
               </Fragment>}
 
@@ -167,9 +167,9 @@ export function ListCharacters({ game }) {
                   <span className="text">Ver Diagramas</span>
                 </a>
 
-                <div className="modal fade" id="diagramModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                <div className="modal fade" id="diagramModal"  tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                   aria-hidden="true">
-                  <div className="modal-dialog" role="document">
+                  <div className="modal-dialog modalejercicios"  role="document">
                     <div className="modal-content">
                       <div className="modal-header">
                         <h5 className="modal-title" id="exampleModalLabel">Diagramas del ejercicio</h5>
@@ -178,14 +178,7 @@ export function ListCharacters({ game }) {
                         </button>
                       </div>
                       <div className="modal-body">
-                        Para hacer una consulta en una tabla, debes poner
-                        <p>select * from NOMBREDELATABLA</p>
-                        <p>Para poder filtrar los resultados, añadimos la palabra WHERE con una condición. Ejemplo:</p>
-                        <p>select * from Personajes where barba=1</p>
-                        <p> Para poder filtrar por un campo de texto, debemos poner el valor entre ''. Ejemplo:</p>
-                        <p> select * from Personajes where barba=1 and color_pelo='negro'</p>
-                        <p>Como vemos en el ejemplo anterior, podemos concatenar condiciones con el AND dentro de la sentencia where.</p>
-                        <img src="/img/wiw/er1.jpg" alt="imagen" width="50%" />
+                         <img src="/img/wiw/er1.png" alt="imagen" width="100%" />
                       </div>
 
                     </div>
