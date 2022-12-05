@@ -17,7 +17,7 @@ const handlePracticar =((ExerciseId, e) => {
         return window.location.href = '/#/user/game/' + ejercicio.id;
     });
 });
-  return (
+  return ( 
     <Fragment>
       <div className="col-lg-6" key={ex.exerciseId} >
         <div className="card shadow mb-4">
