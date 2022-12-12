@@ -69,7 +69,7 @@ export function Game() {
                   <div className="card-header py-3">
                     <h6 className="m-0 font-weight-bold text-primary">Esperando...</h6>
                   </div>
-                  <div className="card-body"><h2>Esperando que empieze la partida</h2>
+                  <div className="card-body"><h2>Esperando que empiece la partida</h2>
                   </div>
                 </div></Fragment> :
                 <ListCharacters game={game} />}

@@ -164,7 +164,7 @@ export function ListCharacters({ game }) {
                   <span className="icon text-white-50">
                     <i className="fas fa-flag"></i>
                   </span>
-                  <span className="text">Ver Diagramas</span>
+                  <span className="text"> Algunas pistas</span>
                 </a>
 
                 <div className="modal fade" id="diagramModal"  tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel"
