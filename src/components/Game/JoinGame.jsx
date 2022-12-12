@@ -71,7 +71,7 @@ export function JoinGame() {
                             </div>
                             <div className="modal-footer">
                                 <button className="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                                <a className="btn btn-primary" href="." onClick={handleJoinPartidaNoUser} data-dismiss="modal">Crear Partida</a>
+                                <a className="btn btn-primary" href="." onClick={handleJoinPartidaNoUser} data-dismiss="modal">Unirse a la partida</a>
                             </div>
                         </div>
                     </div>
