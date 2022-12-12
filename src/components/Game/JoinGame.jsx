@@ -103,13 +103,13 @@ export function JoinGame() {
                                         <span aria-hidden="true">×</span>
                                     </button>
                                 </div>
-                                <div className="modal-body">Selecciona el tipo de ejercicio que quieres
+                                <div className="modal-body">Introduce el PIN
                                     <input className="form-control form-control-user" name='pin' placeholder='PIN...' type='text' onChange={handlechangePin} />
 
                                 </div>
                                 <div className="modal-footer">
                                     <button className="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                                    <a className="btn btn-primary" href="." onClick={handleJoinPartida} data-dismiss="modal">Crear Partida</a>
+                                    <a className="btn btn-primary" href="." onClick={handleJoinPartida} data-dismiss="modal">Unirse a la partida</a>
                                 </div>
                             </div>
                         </div>
