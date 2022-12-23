@@ -101,7 +101,7 @@ export function Register() {
                         <div className="card o-hidden border-0 shadow-lg m-5">
                             <div className="card-body p-0">
                                 <div className="row">
-                                    <BigHead className="col-lg-5 d-none d-lg-block bg-login-image" />
+                                    <BigHead className="col-lg-5 d-none d-lg-block" />
 
                                     {/* <div className="col-lg-5 d-none d-lg-block bg-register-image" style={{ backgroundImage: `url(/img/wiw/${foto}.png)` }}></div> */}
                                     <div className="col-lg-7">
