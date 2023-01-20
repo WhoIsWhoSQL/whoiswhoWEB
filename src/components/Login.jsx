@@ -105,7 +105,7 @@ export function Login() {
                           <Link to="register" className='small'>¡Crea una cuenta!</Link>
                         </div>
                         <div className="text-center">
-                          <Link to="docs" className='small'>¿Cómo se ha hecho esta web?</Link>
+                          <Link to="docs" className='small'>¿Quieres saber cómo se ha hecho esta web?</Link>
                         </div>
                       </div>
                     </div>
