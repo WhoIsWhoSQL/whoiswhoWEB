@@ -6,7 +6,7 @@ import { useAuthContext } from "../context/AuthContextProvider";
 
 export class ClassroomService {
 
-    baseURL_API = process.env.REACT_APP_BASE_URL_API || 'https://whoiswhosql.cancargol.net:3000/api/v1/'
+    baseURL_API = process.env.REACT_APP_BASE_URL_API || 'https://whosqlwho.org:3000/api/v1/'
     baseURL = this.baseURL_API + "classrooms"
     constructor(token = null) {
         //   console.log("token: " + token);
